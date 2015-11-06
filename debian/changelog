@@ -1,0 +1,1453 @@
+xkeyboard-config (2.12.1-1ubuntu1) vivid; urgency=medium
+
+  * Added chromebook support from: http://pastebin.com/PrPYW6SA
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Fri, 06 Nov 2015 19:19:04 +0400
+
+xkeyboard-config (2.12-1ubuntu1) utopic; urgency=medium
+
+  * Merge with Debian unstable, remaining changes:
+    - control, rules, xkb-data-i18n.install, xkb-data.install: Split out
+      xkb-data-i18n to be used by console-setup.
+    - xkb-data.postinst.in: Remove the xkb cache to make sure it gets
+      regenerated.
+    - 105_intelligent_keyboard.patch: Add support for the Intelligent
+      Keyboard K04. Not accepted upstream, so is a candidate for being
+      dropped in a future upload.
+
+ -- Dmitry Shachnev <mitya57@ubuntu.com>  Sun, 22 Jun 2014 19:19:04 +0400
+
+xkeyboard-config (2.12-1) unstable; urgency=medium
+
+  * New upstream release
+    + revert Russian layout change from 2.11 (closes: #748521)
+    + revert it/fr/nl numeric keypad separator change (closes: #748734, #749112)
+  * Fix right control key on fr(oss) layout to behave like control again
+    (closes: #733757)
+
+ -- Julien Cristau <jcristau@debian.org>  Fri, 06 Jun 2014 17:44:52 +0200
+
+xkeyboard-config (2.11-1ubuntu1) utopic; urgency=medium
+
+  * Merge with Debian unstable, remaining changes:
+    - control, rules, xkb-data-i18n.install, xkb-data.install: Split out
+      xkb-data-i18n to be used by console-setup.
+    - xkb-data.postinst.in: Remove the xkb cache to make sure it gets
+      regenerated.
+    - 105_intelligent_keyboard.patch: Add support for the Intelligent
+      Keyboard K04.
+  * Dropped bengali_to_bangla.patch, applied upstream.
+  * Dropped 108_fix_intltool_make_check.diff, seems to be no longer
+    needed.
+
+ -- Dmitry Shachnev <mitya57@ubuntu.com>  Tue, 13 May 2014 16:15:55 +0400
+
+xkeyboard-config (2.11-1) unstable; urgency=medium
+
+  [ Lior Kaplan ]
+  * New upstream release
+    + altwin(ctrl_alt_win): Map "win" to Ctrl keys (closes: #678553)
+    + use the modern language name Bangla instead of Bengali (closes: #731274)
+    + implemented the new Israeli Standard SI1452 for the il basic layout
+      (closes: #530820)
+
+  [ Sven Joachim ]
+  * Mark xkb-data as "Multi-Arch: foreign" (Closes: #677884).
+
+  [ Julien Cristau ]
+  * Fix grab:debug reference in the xml file.
+
+ -- Julien Cristau <jcristau@debian.org>  Tue, 13 May 2014 00:09:58 +0200
+
+xkeyboard-config (2.10.1-1ubuntu1) trusty; urgency=low
+
+  [ Dmitry Shachnev ]
+  * Merge with Debian unstable, remaining changes:
+    - control, rules, xkb-data-i18n.install, xkb-data.install: Split out
+      xkb-data-i18n to be used by console-setup.
+    - xkb-data.postinst.in: Remove the xkb cache to make sure it gets
+      regenerated.
+    - 105_intelligent_keyboard.patch: Add support for the Intelligent
+      Keyboard K04.
+    - 108_fix_intltool_make_check.diff: Fix make check in the presence
+      of the quilt patch system.
+    - Add multi-arch support.
+  * Dropped change (Ubuntu 12.04 LTS has a version newer than 1.9):
+    - Migrate settings from dvorak-intl to dvorak-alt-intl to match rename
+      in xkeyboard-config 1.9.
+
+  [ Gunnar Hjalmarsson ]
+  * debian/patches/bengali_to_bangla.patch:
+    Use the modern language name Bangla instead of Bengali (LP: #991002).
+
+ -- Dmitry Shachnev <mitya57@ubuntu.com>  Sun, 29 Dec 2013 11:43:52 +0400
+
+xkeyboard-config (2.10.1-1) unstable; urgency=low
+
+  [ Dmitry Shachnev ]
+  * New upstream release (closes: #718730).
+  * Refresh revert-goodmap-badmap-for-apple.diff.
+  * Drop preserve-shift.diff, applied upstream.
+  * Update debian/watch for new tarballs location (closes: #727812).
+  * Disable autopoint, it causes build failure and we use intltoolize
+    instead.
+  * Bump Standards-Version to 3.9.5, no changes needed.
+
+ -- Julien Cristau <jcristau@debian.org>  Sun, 22 Dec 2013 16:37:56 +0100
+
+xkeyboard-config (2.5.1-3ubuntu2) saucy; urgency=low
+
+  * debian/patches/git_audio_mic_mute.patch: Add XF86AudioMicMute mappings,
+    thanks James M Leddy (lp: #408903)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 17 May 2013 19:09:15 +0200
+
+xkeyboard-config (2.5.1-3ubuntu1) raring; urgency=low
+
+  * Merge from Debian unstable. Remaining Ubuntu changes:
+    + control, rules, xkb-data-i18n.install, xkb-data.install: Split out
+      xkb-data-i18n to be used by console-setup.
+    + xkb-data.postinst.in:
+      + Migrate console-setup/keyboard-configuration settings from dvorak-intl
+        to dvorak-alt-intl to match rename in xkeyboard-config 1.9. (LP: 742683)
+      + Remove the xkb cache to make sure it gets regenerated.
+    + 105_intelligent_keyboard.patch: Add support for the Intelligent
+      Keyboard K04
+    + 108_fix_intltool_make_check.diff: Fix make check in the presence
+      of the quilt patch system.
+    + 110_dead_hook_horn.patch: Add two deadkeys on level 3 and 4 of the
+      j key for the latin keymap. (LP: #825624)
+    + 111_cz_ssharp.patch: Fix mapping of 4th level of the AC11 key to
+      ssharp rather than quotedbl for the Czech layout.  Cherrypick of
+      patch from upstream. (LP: #953477)
+    + 112_dk_dvorak_tilde.patch: Fix tilde key in the Danish Dvorak layout. It's
+      not the same as Norwegian as has been assumed previously. (LP: #989626)
+  * Add multi-arch support (Closes: #677884)
+
+ -- Benjamin Drung <bdrung@ubuntu.com>  Sun, 03 Feb 2013 01:08:43 +0100
+
+xkeyboard-config (2.5.1-3) unstable; urgency=low
+
+  * Cherry-picks from upstream:
+    - A couple of missing chars in gr(polytonic), added on levels 3, 4
+      (closes: #696126)
+    - Reverting broken fix for is keyboard
+    - symbols: ossmath is CTRL+ALT, not FOUR_LEVEL (closes: #657440)
+    - symbols/gr: fix comment (closes: #696125)
+
+ -- Julien Cristau <jcristau@debian.org>  Tue, 25 Dec 2012 12:37:00 +0100
+
+xkeyboard-config (2.5.1-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Preserve Shift modifier so GTK3 apps can properly differentiate between
+    F10 and Shift+F10 (Closes: #656685).
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 21 Sep 2012 18:12:52 +0200
+
+xkeyboard-config (2.5.1-2) unstable; urgency=low
+
+  [ Ansgar Burchardt ]
+  * Use xz compression for binary packages (Closes: #683891).
+
+ -- Cyril Brulebois <kibi@debian.org>  Sun, 05 Aug 2012 11:54:19 +0200
+
+xkeyboard-config (2.5.1-1) unstable; urgency=low
+
+  * New upstream release:
+    - Update translations, the previous release was rushed a bit for
+      the security fix.
+
+ -- Cyril Brulebois <kibi@debian.org>  Thu, 02 Feb 2012 12:32:30 +0100
+
+xkeyboard-config (2.5-1ubuntu7) quantal; urgency=low
+
+  * Add patch 114_shift_f10.patch.  Don't let Ctrl+Alt consume Shift, else
+    it causes Shift-F10 to be treated as F10.  This can result in popup
+    menus opening when they shouldn't.
+    (LP: #937822)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 24 Sep 2012 15:19:25 -0700
+
+xkeyboard-config (2.5-1ubuntu6) quantal; urgency=low
+
+  * Disable patch 109.  The fix causes behavioral changes for right
+    control.  Needs to be fixed differently; discussion ongoing upstream.
+    (LP: #1013881)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Thu, 19 Jul 2012 14:08:18 -0700
+
+xkeyboard-config (2.5-1ubuntu5) quantal; urgency=low
+
+  * Add 113_ossmath_is_five_levels.patch: Some keymaps like fr/oss fail to
+    load because they include ossmath (via keypad(oss)) which
+    misconfigures the keypad as 4-level when it should be 5-level.  This
+    patch from upstream bugzilla fixes this by adding the 5th level to the
+    ossmath definition.
+    (LP: #985065)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 25 Jun 2012 09:30:19 -0700
+
+xkeyboard-config (2.5-1ubuntu4) quantal; urgency=low
+
+  * Actually apply patch 112
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 04 Jun 2012 18:30:47 -0700
+
+xkeyboard-config (2.5-1ubuntu3) quantal; urgency=low
+
+  * Add 111_cz_ssharp.patch: Fix mapping of 4th level of the AC11 key to
+    ssharp rather than quotedbl for the Czech layout.  Cherrypick of 
+    patch from upstream.
+    (LP: #953477)
+  * Add 112_dk_dvorak_tilde.patch: Fix tilde key in the Danish Dvorak
+    layout.  It's not the same as Norwegian as has been assumed previously.
+    (LP: #989626)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 04 Jun 2012 18:11:53 -0700
+
+xkeyboard-config (2.5-1ubuntu2) quantal; urgency=low
+
+  * Add 109_fr_oss_space_char.patch: Fix problems using space bar in various
+    applications when using the fr(oss) keymap.
+    (LP: #221112)
+  * Add 110_dead_hook_horn.patch: Add two deadkeys on level 3 and 4 of the
+    j key for the latin keymap.
+    (LP: #825624)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Wed, 16 May 2012 18:46:24 -0700
+
+xkeyboard-config (2.5-1ubuntu1) precise; urgency=low
+
+  * Merge from Debian experimental. Remaining Ubuntu changes:
+    + rules, xkb-data-i18n.install, xkb-data.install: Split out
+      xkb-data-i18n to be used by console-setup.
+    + 105_intelligent_keyboard.patch: Add support for the Intelligent
+      Keyboard K04
+    + 108_fix_intltool_make_check.diff: Fix make check in the presence
+      of the quilt patch system.
+    + xkb-data.postinst.in: Migrate console-setup/keyboard-configuration
+      settings from dvorak-intl to dvorak-alt-intl to match rename in
+      xkeyboard-config 1.9. (LP: 742683)
+  * xkb-data.install: Add missing directories (man, pkgconfig).
+  * xkb-data.postinst: Remove the xkb cache to make sure it gets regenerated.
+
+ -- Timo Aaltonen <tjaalton@ubuntu.com>  Tue, 24 Jan 2012 00:35:43 +0200
+
+xkeyboard-config (2.5-1) unstable; urgency=low
+
+  * New upstream release, including:
+    - Hide ClearGrab/CloseGrabs actions behind an option.
+  * To get those actions back, use the grab:break_actions option. At
+    the moment, the corresponding actionve has been disabled on the
+    server side as a hot fix for CVE-2012-0064 (Closes: #656500).
+  * Since there's a workaround on the server side already, do not use
+    a high urgency, so that this new upstream release and its various
+    changes can be tested for a while in unstable.
+  * Update URL in watch file.
+  * Add xsltproc, xutils-dev build-deps.
+  * Keep /usr/share/man out of the udeb, due to a newly-added manpage.
+
+ -- Cyril Brulebois <kibi@debian.org>  Fri, 20 Jan 2012 18:21:03 +0100
+
+xkeyboard-config (2.3-2) unstable; urgency=low
+
+  * Upload to unstable, for GNOME3 (Closes: #652871).
+  * Adapt dh_autoreconf override since its behaviour changed.
+
+ -- Cyril Brulebois <kibi@debian.org>  Wed, 21 Dec 2011 10:52:00 +0100
+
+xkeyboard-config (2.3-1ubuntu3) precise; urgency=low
+
+  * debian/patches/101_disable_ungrab_keys_by_default.diff:
+    - Cherry pick from upstream.  Don't bind the ClearGrab/CloseGrab keys by
+      default - these allow bypassing of screensavers' screenlocks.
+
+ -- Christopher James Halse Rogers <raof@ubuntu.com>  Fri, 20 Jan 2012 12:57:14 +1100
+
+xkeyboard-config (2.3-1ubuntu2) oneiric; urgency=low
+
+  * rules: Bring back the pot file build, very much needed still.
+    This time move the original file away during build, and restore
+    on clean. (LP: #868554)
+
+ -- Timo Aaltonen <tjaalton@ubuntu.com>  Wed, 05 Oct 2011 23:34:45 +0300
+
+xkeyboard-config (2.3-1ubuntu1) oneiric; urgency=low
+
+  * Merge from Debian experimental.  Remaining Ubuntu changes:
+      + xkb-data-i18n.install, xkb-data.install, rules: Split out
+        xkb-data-i18n to be used by console-setup.
+      + 105_intelligent_keyboard.patch: Add support for the Intelligent
+        Keyboard K04
+      + 108_fix_intltool_make_check.diff: Fix make check in the presence
+        of the quilt patch system.
+      + xkb-data.postinst.in: Migrate console-setup/keyboard-configuration
+        settings from dvorak-intl to dvorak-alt-intl to match rename in
+        xkeyboard-config 1.9. (LP: 742683)
+  * No need to build the pot file anymore, upstream version is used.
+  * Fix dh_autoreconf override in rules (FTBFS).
+
+ -- Timo Aaltonen <tjaalton@ubuntu.com>  Thu, 11 Aug 2011 22:01:46 +0300
+
+xkeyboard-config (2.3-1) experimental; urgency=low
+
+  * New upstream release:
+    - Since 2.1 is still supposed to be the best for GNOME2, and since
+      GNOME3 is still being prepared in experimental, target that suite
+      rather than unstable.
+  * Add intltool build-dep.
+
+ -- Cyril Brulebois <kibi@debian.org>  Sat, 04 Jun 2011 00:35:16 +0200
+
+xkeyboard-config (2.2.1-1ubuntu1) oneiric; urgency=low
+
+  * Merge from Debian experimental.  Remaining Ubuntu changes:
+      + xkb-data-i18n.install, xkb-data.install, rules: Split out
+        xkb-data-i18n to be used by console-setup.
+      + rules: Generate pot file for translations during build
+      + 105_intelligent_keyboard.patch: Add support for the Intelligent
+        Keyboard K04
+  * debian/patches/108_taiwan.patch:
+  * debian/patches/104_macbook_expose_and_dashboard.patch:
+  * debian/patches/107_lao.patch:
+    - Drop, included upstream
+  * debian/xkb-data.postinst.in:
+    - Migrate console-setup/keyboard-configuration settings from dvorak-intl
+      to dvorak-alt-intl to match rename in xkeyboard-config 1.9. (LP: #742683)
+  * debian/patches/108_fix_intltool_make_check.diff:
+    - Fix make check in the presence of the quilt patch system.
+
+ -- Christopher James Halse Rogers <raof@ubuntu.com>  Tue, 24 May 2011 12:13:34 +1000
+
+xkeyboard-config (2.2.1-1) experimental; urgency=low
+
+  * New upstream release:
+    - Big rewrite for GNOME3.
+  * By default, run-time dependencies are checked at build-time:
+    - Pass --disable-runtime-deps to disable that check since there's no
+      point in doing so for Debian packages.
+    - Break earlier versions of libx11-6.
+  * Get rid of old maintainer scripts to upgrade from 1.6 since squeeze
+    has 1.8.
+  * Refresh patches.
+  * Switch to dh:
+    - Bump debhelper build-dep/compat to 8.
+    - Use dh-autoreconf.
+    - Rewrite debian/rules accordingly.
+    - Build out-of-tree.
+  * Remove debian/xsfbs/, no longer needed.
+  * Remove debian/patches/quiltrc, not really needed.
+
+ -- Cyril Brulebois <kibi@debian.org>  Wed, 06 Apr 2011 02:41:25 +0200
+
+xkeyboard-config (2.1-2) unstable; urgency=low
+
+  * Remove Mohammed Adnène Trojette from Uploaders. Thanks for your work!
+  * Wrap build dependencies.
+  * Drop Breaks on libx11-6 (<< 2:1.1), that was before lenny.
+  * Bump Standards-Version to 3.9.1 (no changes needed).
+  * Upload to unstable.
+
+ -- Cyril Brulebois <kibi@debian.org>  Wed, 06 Apr 2011 01:01:12 +0200
+
+xkeyboard-config (2.1-1ubuntu3) natty; urgency=low
+
+  * Fix broken HTC Dream stanza.
+
+ -- Evan Dandrea <ev@ubuntu.com>  Tue, 08 Feb 2011 12:22:12 +0000
+
+xkeyboard-config (2.1-1ubuntu2) natty; urgency=low
+
+  * Refresh patches 104, 105, 108 to apply
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Thu, 03 Feb 2011 15:57:08 -0800
+
+xkeyboard-config (2.1-1ubuntu1) natty; urgency=low
+
+  * Merge from debian of 2.1 release.
+    - Fixes Ubuntu bugs:
+      + Sindhi keyboard layout (locale: sd_PK, sd_IN) (LP: #588918)
+      + Fix conflict between Mali and Malayalam layouts (LP: #575660)
+      + Support for Philippines "National Keyboard Layout" (LP: #672881)
+      + Support for Kinesis keyboard geometry (LP: #393887)
+      + Support for Apple Aluminium keyboards (LP: #696232)
+      + Support for abnt2 keyboard, thinkpad variant for Lenovo 3000 v100
+        laptops (LP: #359719)
+      + Fix CapsLock misspelling (LP: #592448)
+    - Remaining Ubuntu changes:
+      + xkb-data-i18n.install, xkb-data.install, rules: Split out
+        xkb-data-i18n to be used by console-setup.
+      + rules: Generate pot file for translations during build
+      + 104_macbook_expose_and_dashboard.patch: Add keycode definitions
+          required for Apples Expose & Dashboard keys (F3/F4).
+      + 105_intelligent_keyboard.patch: Add support for the Intelligent
+        Keyboard K04
+      + 107_lao.patch: New keyboard layout for Lao, implemented as
+        an alternative to the default one.
+      + 108_taiwan.patch: New keyboard layouts for Taiwan.
+  * Drop 102_mac_aliases.patch: This appears to have some side effects,
+    and the patch was not taken by upstream because it was an incomplete
+    fix.  Reopens bug 327963
+  * Drop patches included in the new upstream release:
+      - 106_fixspell3d.patch: upstream
+      - 109_mali.patch: upstream
+      - 110_variants-cleanup.patch
+      - 111_il-missing-symbol.patch
+      - 112_zero-with-spacing.patch
+      - 113_cz-dvorak-ucw.patch
+      - 114_ejn_4_level.patch
+      - 115_aluminium_geometries.patch
+      - 116_aluminium_keycodes.patch
+      - 117_aluminium_symbols.patch
+      - 118_aluminium_aliases.patch
+      - 119_aluminium_pc_compat.patch
+      - 120_aluminium_rules.patch
+      - 121_tamil_chars.patch
+      - 122_olpc-azerty.patch
+      - 123_fix_i18n.patch
+      - 124_serbian_ru_level3.patch
+      - 125_mapping_tools_launch5_menukb.patch
+      - 126_swahili_arabic.patch
+      - 127_restore_gb_colemak.patch
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Tue, 01 Feb 2011 11:57:39 -0800
+
+xkeyboard-config (2.1-1) experimental; urgency=low
+
+  * New upstream release:
+    + Beware of the possible regressions, we're going 3 releases forward
+      at once.
+  * Rebuild ChangeLog using “git log” on the upstream branch. The NEWS
+    file is a bit too lightweight. As a reminder, it's installed as:
+      /usr/share/doc/xkb-data/changelog.gz
+  * Point to /usr/share/X11/xkb/rules/base.lst in README.Debian, thanks to
+    Riku Saikkonen for the suggestion (Closes: #487951).
+  * Great debian/rules cleanup:
+    + Remove deb target, dpkg-buildpackage's -i does the right thing, and
+      “-rfakeroot” has been the default for a while.
+    + Remove dir target, no longer used.
+    + Stop removing rules/compat/base.l[2-4]*.part, they are no longer
+      generated automatically.
+    + More generically, stop removing files which weren't cleaned, that's
+      been fixed.
+    + Call touch in clean to restore the empty file which gets deleted by
+      quilt when unpatching rules/base.o_k.part; this avoid its showing up
+      as “deleted” in “git status”.
+    + Try and keep the udeb's size low: Replace multiple spaces with a
+      single space character. For this version, installed size goes down
+      from 3.5MB to 3.0MB.
+    + Additionally, remove comments starting with “//”. Down to 2.6MB, yay.
+    + Also don't ship the newly-added pkg-config file in the udeb.
+    + Stop removing $(xkb_base)/compiled, it's no longer created.
+    + Stop passing --disable-xkbcomp-symlink to configure, it's gone.
+  * Merge xsfbs/debian-unstable, which helps avoiding rebuilds.
+  * Update download URL in watch file.
+
+ -- Cyril Brulebois <kibi@debian.org>  Fri, 28 Jan 2011 00:11:58 +0100
+
+xkeyboard-config (1.8-2) unstable; urgency=low
+
+  * Add revert-goodmap-badmap-for-apple.diff patch to make apple:goodmap and
+    apple:badmap options available again. Some users are still affected by
+    this issue, so restore those options for now (Closes: #604671). Thanks,
+    Corsac, for reporting and checking the fix!
+
+ -- Cyril Brulebois <kibi@debian.org>  Tue, 23 Nov 2010 21:48:24 +0100
+
+xkeyboard-config (1.8-1ubuntu8) lucid; urgency=low
+
+  * rules: Make pot file as part of build process.
+    (LP: #562872)
+  * Renumber patch 130 to 128 so is consecutive
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Wed, 14 Apr 2010 16:20:56 -0700
+
+xkeyboard-config (1.8-1ubuntu7) lucid; urgency=low
+
+  * add debian/patches/130_fix_oss_ctrl_space_accelerator.patch:
+    - don't include level4nl but only level4n for french oss layout.
+      both space and Ctrl + space returned the same XLookupString, which
+      prevents space using in some application using
+      gtk_action_group_add_toggle_actions to setup Ctrl + space accelerator.
+      We lose rctrl accelator but that's better than not having space in
+      those applications. Setup it manually will reintroduce
+      https://bugs.launchpad.net/bugs/198759
+      (LP: #221112)
+
+ -- Didier Roche <didrocks@ubuntu.com>  Wed, 14 Apr 2010 18:15:30 +0200
+
+xkeyboard-config (1.8-1ubuntu6) lucid; urgency=low
+
+  * Removed unwanted semicolons in 112_zero-with-spacing.patch
+    to quell error messages when using certain keyboard layouts.
+    (LP: #553401)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Tue, 13 Apr 2010 13:36:32 -0700
+
+xkeyboard-config (1.8-1ubuntu5) lucid; urgency=low
+
+  * Add 127_restore_gb_colemak.patch:  Fixes bottom row offset on the
+    Colemak UK keyboard.  Cherrypick from upstream to revert an earlier
+    patch.  Thanks for chasing the patch down, Ben.
+    (LP: #542237)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Tue, 13 Apr 2010 13:14:35 -0700
+
+xkeyboard-config (1.8-1ubuntu4) lucid; urgency=low
+
+  * Add tw to Makefile so it will install
+  * Earlier upload fixed win key as 3rd level chooser (LP: #408397)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 29 Mar 2010 20:49:47 -0700
+
+xkeyboard-config (1.8-1ubuntu3) lucid; urgency=low
+
+  * Cherrypicks from upstream to enable support for Apple Aluminum
+    keyboards:
+    + 115_aluminium_geometries.patch
+    + 116_aluminium_keycodes.patch
+    + 117_aluminium_symbols.patch
+    + 118_aluminium_aliases.patch
+    + 119_aluminium_pc_compat.patch
+    + 120_aluminium_rules.patch
+  * Cherrypicks from upstream to fix keys on various layouts:
+    + 107_lao.patch
+    + 108_taiwan.patch
+    + 109_mali.patch
+    + 110_variants-cleanup.patch
+    + 111_il-missing-symbol.patch
+    + 112_zero-with-spacing.patch
+    + 113_cz-dvorak-ucw.patch
+    + 114_ejn_4_level.patch
+    + 121_tamil_chars.patch
+    + 122_olpc-azerty.patch
+    + 123_fix_i18n.patch
+    + 124_serbian_ru_level3.patch
+    + 125_mapping_tools_launch5_menukb.patch
+    + 126_swahili_arabic.patch
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 29 Mar 2010 20:31:26 -0700
+
+xkeyboard-config (1.8-1ubuntu2) lucid; urgency=low
+
+  [Arne Goetje]
+  * Add 108_taiwan.patch: New keyboard layouts for Taiwan.
+  * Add 107_lao.patch: New keyboard layout for Lao, implemented as
+    an alternative to the default one. (LP: #341741)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 29 Mar 2010 19:11:44 -0700
+
+xkeyboard-config (1.8-1ubuntu1) lucid; urgency=low
+
+  * Merge from debian testing.  Remaining changes:
+    - Split out xkb-data-i18n to be used by console-setup.
+    - debian/xkeyboard-config.pot: Add pot file for translations (updated)
+    - Add 102_mac_aliases.patch: Fix error activating XKB config on MacBook
+      due to lack of mac w/ deadkeys layout aliases.
+    - Add 104_macbook_expose_and_dashboard.patch: Add keycode definitions
+      required for Apples Expose & Dashboard keys (F3/F4).
+    - Add 105_intelligent_keyboard.patch: Add support for the Intelligent
+      Keyboard K04
+    - Add 106_fixspell3d.patch: Fix spelling error from 3d to 3rd
+  * Drop 101_rus.patch and 103_swiss_legacy.patch: Included upstream now
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 29 Mar 2010 16:42:48 -0700
+
+xkeyboard-config (1.8-1) unstable; urgency=low
+
+  [ Julien Cristau ]
+  * Remove myself from Uploaders
+  * New upstream release
+    + Fix Win key as third level chooser (closes: #531771)
+
+  [ Cyril Brulebois ]
+  * Add udeb needed for the graphical installer: xkb-data-udeb.
+  * Add myself to Uploaders.
+  * Bump Standards-Version from 3.8.3 to 3.8.4 (no changes needed).
+  * Add Depends: ${misc:Depends} to xkb-data.
+
+ -- Cyril Brulebois <kibi@debian.org>  Mon, 15 Mar 2010 14:24:43 +0100
+
+xkeyboard-config (1.7-2ubuntu2) lucid; urgency=low
+
+  * Correct spelling error from 3d to 3rd (LP: #398873)
+
+ -- Nigel Babu <nigelbabu@gmail.com>  Tue, 16 Feb 2010 10:07:01 +0530
+
+xkeyboard-config (1.7-2ubuntu1) lucid; urgency=low
+
+  * Merge from debian testing.  Remaining changes:
+    - Split out xkb-data-i18n to be used by console-setup.
+    - debian/xkeyboard-config.pot: Add pot file for translations (updated)
+    - Add 101_rus.patch:  Tag USA Russian Phonetic keyboard layout with
+      Russian language tag.
+    - Add 102_mac_aliases.patch: Fix error activating XKB config on MacBook
+      due to lack of mac w/ deadkeys layout aliases.
+    - Add 103_swiss_legacy.patch: Newer swiss keyboards have swapped bar and
+      brokenbar as a workaround to a Microsoft mistake in the Windows
+      keyboard layout.
+  * Add 104_macbook_expose_and_dashboard.patch: Add keycode definitions
+    required for Apples Expose & Dashboard keys (F3/F4).
+    (LP: #520519)
+  * Add 105_intelligent_keyboard.patch: Add support for the Intelligent
+    Keyboard K04
+    (LP: #458206)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Thu, 11 Feb 2010 13:11:49 -0800
+
+xkeyboard-config (1.7-2) unstable; urgency=low
+
+  * Apparently some people have /etc/X11/xkb as a symlink, which makes rmdir
+    fail.  Try to handle that case as well (closes: #558761).  Thanks, Arjan
+    Opmeer!
+
+ -- Julien Cristau <jcristau@debian.org>  Sat, 16 Jan 2010 20:39:49 +0000
+
+xkeyboard-config (1.7-1ubuntu3) lucid; urgency=low
+
+  * No-change rebuild to stop translation stripping.
+
+ -- Evan Dandrea <evand@ubuntu.com>  Mon, 11 Jan 2010 17:48:19 +0000
+
+xkeyboard-config (1.7-1ubuntu2) lucid; urgency=low
+
+  * Split out xkb-data-i18n to be used by console-setup.
+
+ -- Evan Dandrea <evand@ubuntu.com>  Tue, 05 Jan 2010 17:45:50 +0000
+
+xkeyboard-config (1.7-1ubuntu1) lucid; urgency=low
+
+  * Merge from Debian testing, remaining changes:
+    - debian/xkeyboard-config.pot: Add pot file for translations (updated)
+    - Add 101_rus.patch:  Tag USA Russian Phonetic keyboard layout with
+      Russian language tag.
+    - Add 102_mac_aliases.patch: Fix error activating XKB config on MacBook
+      due to lack of mac w/ deadkeys layout aliases.
+    - Add 103_swiss_legacy.patch: Newer swiss keyboards have swapped bar and
+      brokenbar as a workaround to a Microsoft mistake in the Windows
+      keyboard layout.
+  * Dropped changes, superseded upstream:
+    - Add 100_abnt2-mapping-of-dot-key.patch, to fix ABNT2 numpad keyboards
+      to print period/dot instead of comma.  Cherrypick from upstream.
+    - README.Debian: Don't advertise hacking on base.xml
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Wed, 23 Dec 2009 00:14:57 -0800
+
+xkeyboard-config (1.7-1) unstable; urgency=low
+
+  [ David Nusinow ]
+  * Add a note about re-enabling ctrl-alt-backspace killing to NEWS.Debian
+    (closes: #531629)
+  * Update xsfbs.
+  * Update to debhelper version 7
+    + Fix up dh_clean -k to use dh_prep instead
+  * Update standards version to 3.8.3.0. No changes necessary.
+
+  [ Julien Cristau ]
+  * Don't install base.xml in /etc/X11/xkb.  Modifying this creates more
+    problems than it solves (closes: #497341).
+  * New upstream release.
+    + fix broken reference to symbols/sun_vndr/us(sun[45]) (closes: #469335)
+    + add a dead_tilde to the Spanish layout (closes: #546288)
+    + fix error in German translation (closes: #532642)
+  * Clean up using maintainer-clean instead of distclean.
+
+ -- Julien Cristau <jcristau@debian.org>  Sun, 29 Nov 2009 11:47:09 +0100
+
+xkeyboard-config (1.6-1ubuntu5) karmic; urgency=low
+
+  * Fix 103_swiss_legacy.patch to not patch the Changelog, so that it applies
+    cleanly.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Thu, 15 Oct 2009 09:24:53 +0000
+
+xkeyboard-config (1.6-1ubuntu4) karmic; urgency=low
+
+  * Add 103_swiss_legacy.patch: Newer swiss keyboards have swapped bar and
+    brokenbar as a workaround to a Microsoft mistake in the Windows
+    keyboard layout.
+    (LP: #222430)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Tue, 13 Oct 2009 11:06:15 -0700
+
+xkeyboard-config (1.6-1ubuntu3) karmic; urgency=low
+
+  * Add 101_rus.patch:  Tag USA Russian Phonetic keyboard layout with
+    Russian language tag.
+    (LP: #429034)
+  * Add 102_mac_aliases.patch: Fix error activating XKB config on MacBook
+    due to lack of mac w/ deadkeys layout aliases.
+    (LP: #327963)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 12 Oct 2009 15:27:33 -0700
+
+xkeyboard-config (1.6-1ubuntu2) karmic; urgency=low
+
+  * Add 100_abnt2-mapping-of-dot-key.patch, to fix ABNT2 numpad keyboards to
+    print period/dot instead of comma.  Cherrypick from upstream.
+    (LP: #272606)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Thu, 20 Aug 2009 10:42:47 -0700
+
+xkeyboard-config (1.6-1ubuntu1) karmic; urgency=low
+
+  * Merge from debian unstable (LP: #386445), remaining changes:
+    - debian/xkeyboard-config.pot: Add pot file for translations (updated)
+    - README.Debian: Don't advertise hacking on base.xml
+  * All Ubuntu patches dropped, applied in source.  Except for one small
+    part of 110_fi_brokenbar.patch which upstream rejected.
+
+ -- Michael Terry <michael.terry@canonical.com>  Fri, 12 Jun 2009 13:51:29 -0400
+
+xkeyboard-config (1.6-1) unstable; urgency=low
+
+  * Add Breaks on old libx11-6.  It seems some people are keeping very, very
+    old libx11-6 versions, which didn't know about some keysyms we're now
+    using, thus making their keyboard unusable (closes: #530585, #514975).
+  * New upstream release
+    + adds Crimean Tatar layouts (closes: #513557)
+    + French translation updated (closes: #529479)
+    + fixes handling of compat layouts (closes: #514409)
+  * Patches sclk_toggle.diff and unhide_lv3_enter_switch.diff are upstream.
+  * Add README.source, bump Standards-Version to 3.8.1.
+
+ -- Julien Cristau <jcristau@debian.org>  Sat, 30 May 2009 16:39:19 +0200
+
+xkeyboard-config (1.5-2ubuntu11) jaunty; urgency=low
+
+  * debian/xkeyboard-config.pot: Add pot file for translations
+    (LP: #349341)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 30 Mar 2009 21:32:36 -0700
+
+xkeyboard-config (1.5-2ubuntu10) jaunty; urgency=low
+
+  * README.Debian: Don't advertise customization of keyboard layouts by
+    hacking on base.xml, since that file gets overwritten on upgrade, and
+    since upstream does not consider this an end-user customizable thing.
+    (LP: #297428)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Thu, 19 Mar 2009 12:12:34 -0700
+
+xkeyboard-config (1.5-2ubuntu9) jaunty; urgency=low
+
+  * Update 109_de_low_quotemarks.patch,
+    111_si_rm_unnecessary_diagraph_layouts.patch, and
+    113_kg_fix_kyrgyz_layouts.patch to apply (FTBS).
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Thu, 19 Mar 2009 00:34:40 -0700
+
+xkeyboard-config (1.5-2ubuntu8) jaunty; urgency=low
+
+  * Update 106_ru_fix_shift.patch:  Remove extraneous parts to only
+    change the minus/underscore issue.  Upstream.
+    (LP: #309844)
+  * Add 109_de_low_quotemarks.patch: Add keys for typing low quotation
+    marks.  Upstream.
+    (LP: #59572)
+  * Add 110_fi_brokenbar.patch: Add keys for bar and broken bar symbols in
+    the finnish keymap.  Upstream.
+    (LP: #181595)
+  * Add 111_si_rm_unnecessary_diagraph_layouts.patch
+    and 112_si_rm_unnecessary_diagraph_layouts_basexmlin.patch:
+    Remove unnecessary diagraph layouts.  Upstream.
+    (LP: #162462)
+  * Add 113_kg_fix_kyrgyz_layouts.patch:  Update to official Kyrgyz
+    Republic layouts.  Upstream.
+    (LP: #198655)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Wed, 18 Mar 2009 22:02:42 -0700
+
+xkeyboard-config (1.5-2ubuntu7) jaunty; urgency=low
+
+  * 108_bg_standards_update.patch:  Update base.xml.in as well.
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Tue, 24 Feb 2009 15:03:51 -0800
+
+xkeyboard-config (1.5-2ubuntu6) jaunty; urgency=low
+
+  * Add 108_bg_standards_update.patch:  New phonetic layout for Bulgarian.
+    (LP: #197414)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Tue, 24 Feb 2009 14:51:25 -0800
+
+xkeyboard-config (1.5-2ubuntu5) jaunty; urgency=low
+
+  * Add 107_crh_layouts.patch: Add Crimean Tatar layouts for several
+    countries.  (LP: #323041)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 23 Feb 2009 18:36:29 -0800
+
+xkeyboard-config (1.5-2ubuntu4) jaunty; urgency=low
+
+  * Add 106_ru_fix_shift.patch: Shift doesn't work on Russian letters, and
+    -/_ is missing from Phonetic layout.
+    (LP: #309844)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Thu, 12 Feb 2009 21:36:22 -0800
+
+xkeyboard-config (1.5-2ubuntu3) jaunty; urgency=low
+
+  * Add 105_lt_kpdl_and_balticplus.patch: KPDL should produce , not . on
+    lt keyboard.  Also add balticplus symbols.
+    (LP: #307670)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Thu, 12 Feb 2009 21:20:31 -0800
+
+xkeyboard-config (1.5-2ubuntu2) jaunty; urgency=low
+
+  * Add 104_hin_wx.patch:  Cherrypick patch from upstream.
+    (LP: #274024)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Thu, 12 Feb 2009 19:43:58 -0800
+
+xkeyboard-config (1.5-2ubuntu1) jaunty; urgency=low
+
+  * Merge with Debian.  Remaining Ubuntu changes:
+    + 003_missing_inet_keys.diff: Add missing KeySyms to enable missing
+      XF86Battery, XF86Bluetooth, and XF86WLAN hotkeys. (LP: 281134)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Wed, 11 Feb 2009 18:02:07 -0800
+
+xkeyboard-config (1.5-2) unstable; urgency=low
+
+  * Cherry-picked from upstream git:
+    + added ca(eng), b.fd.o#19707
+    + fixed meta for fi(smi), b.fd.o#19841
+    Requested by Samuel Thibault.
+
+ -- Julien Cristau <jcristau@debian.org>  Sun, 01 Feb 2009 16:46:55 +0100
+
+xkeyboard-config (1.5-1) unstable; urgency=low
+
+  * New upstream release.
+    + bepo layout updated (closes: #469826)
+    + some symbols added to Gurmukhi keymap (closes: #443647)
+    + new 'deadtilde' variant for es and latam layouts (closes: #444035)
+    + problem with cymotion model and XF86WWW keysym fixed (closes: #462816)
+    + 'sun' rules files removed (closes: #469306)
+    + the us layout doesn't override CAPS anymore (closes: #504022)
+    + model 'logimel', Logitech Media Keyboard Elite, added (closes: #384801)
+  * Patch sclk_toggle.diff updated.
+  * Patch unhide_lv3_enter_switch.diff refreshed.
+  * Patch send-upstream/001_keypad_comma.diff dropped; the kpdl:comma option
+    exists since 1.1, and keypad:comma was broken since then.
+  * Patches add_void_definition_pl-324647.diff and mac_poweroff.diff dropped,
+    applied upstream.
+  * Add myself to Uploaders.
+  * Update debian/copyright from upstream COPYING.
+
+ -- Julien Cristau <jcristau@debian.org>  Wed, 28 Jan 2009 06:40:24 +0100
+
+xkeyboard-config (1.4-1ubuntu3) jaunty; urgency=low
+
+  * Add 101_be_ad09.patch:  Adds missing character on belgian keyboard
+    (LP: #213346)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 26 Jan 2009 15:01:54 -0800
+
+xkeyboard-config (1.4-1ubuntu2) jaunty; urgency=low
+
+  * README.Debian: Correct documentation about location for keyboard
+    customizations
+    (LP: #297428)
+
+ -- Bryce Harrington <bryce@ubuntu.com>  Mon, 26 Jan 2009 14:48:05 -0800
+
+xkeyboard-config (1.4-1ubuntu1) jaunty; urgency=low
+
+  * Merge from Debian experimental, remaining changes:
+    - 100_abnt2_jp106.diff: Fix ABNT2 keys. Patch modified to apply.
+    - send-upstream/003_missing_inet_keys.diff: Add missing KeySyms to
+      enable missing XF86Battery hotkey. (LP: 281134)
+
+ -- Timo Aaltonen <tjaalton@ubuntu.com>  Thu, 22 Jan 2009 18:33:01 +0200
+
+xkeyboard-config (1.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Clean up generated files on clean, and recreate them at build time, in an
+    attempt to make the build system cleaner.  Also reorganize debian/rules in
+    the process, using the standard xsfbs ruleset.
+  * Update patch send-upstream/001_keypad_comma.diff.
+  * Delete patch fixed-compat-rules-for-Romania-b.fd.o-16872.patch, applied
+    upstream.
+
+ -- Julien Cristau <jcristau@debian.org>  Wed, 12 Nov 2008 19:45:45 +0100
+
+xkeyboard-config (1.3-2ubuntu5) jaunty; urgency=low
+
+   * 003_missing_inet_keys.diff: Add missing KeySyms to enable
+     missing XF86Battery hotkey. (LP: #281134)
+
+ -- Mario Limonciello <mario_limonciello@dell.com>  Tue, 02 Dec 2008 14:47:56 -0600
+
+xkeyboard-config (1.3-2ubuntu4.3) jaunty; urgency=low
+
+  * No-change upload to jaunty to cause xkb-data to exist again on armel.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 26 Nov 2008 23:54:16 +0000
+
+xkeyboard-config (1.3-2ubuntu4.2) intrepid-proposed; urgency=low
+
+  * 100_abnt2_jp106.diff: The previous fix was wrong. ABNT2 has KPPT
+    which should produce keycode 129. Thanks Leonardo Couto!
+    (LP: #272606)
+
+ -- Timo Aaltonen <tepsipakki@ubuntu.com>  Tue, 18 Nov 2008 07:17:59 +0200
+
+xkeyboard-config (1.3-2ubuntu4.1) intrepid-proposed; urgency=low
+
+  * 100_abnt2_jp106.diff: Fix keycode 129 to produce a dot instead of
+    a comma. (LP: #272606)
+  * Remove patches/ directory which should not be included in the diff.
+
+ -- Timo Aaltonen <tepsipakki@ubuntu.com>  Wed, 12 Nov 2008 11:46:03 +0200
+
+xkeyboard-config (1.3-2ubuntu4) intrepid; urgency=low
+
+  * Update 100_abnt2_jp106.diff, s/AB11/I211/ from symbols/inet.
+
+ -- Timo Aaltonen <tepsipakki@ubuntu.com>  Wed, 17 Sep 2008 12:27:15 +0300
+
+xkeyboard-config (1.3-2ubuntu3) intrepid; urgency=low
+
+  * 100_abnt2_jp106.diff: Fix keycodes/evdev to better support ABNT2 and
+    JP106. (LP: #255372, #258595)
+
+ -- Timo Aaltonen <tepsipakki@ubuntu.com>  Tue, 16 Sep 2008 16:47:08 +0300
+
+xkeyboard-config (1.3-2ubuntu2) intrepid; urgency=low
+
+  * control: Add libglib2.0-dev, intltool to build-deps (FTBFS).
+  * rules: remove an extra "rm -f".
+
+ -- Timo Aaltonen <tepsipakki@ubuntu.com>  Tue, 09 Sep 2008 20:03:54 +0300
+
+xkeyboard-config (1.3-2ubuntu1) intrepid; urgency=low
+
+  * Pull from upstream/master, last commit 667a880a4f656fe3.
+    - needed for "implement special ruleset for evdev driver"
+  * Drop us-mac.diff, fixed-compat-rules-for-Romania-b.fd.o-16872.patch,
+    applied upstream.
+  * Modify send-upstream/001_keypad_comma.diff to apply.
+  * debian/rules:
+    - Modified to act more like the other pkg-xorg packages.
+    - Run autoreconf on configure.
+    - Clean po/*.gmo.
+    - Since building in a separate directory doesn't work without
+      violence, clean Makefile's too to make the diff smaller.
+  * debian/control: Build-depend on automake, libtool, xutils-dev.
+  * Drop clean.diff, not needed anymore.
+
+ -- Timo Aaltonen <tepsipakki@ubuntu.com>  Tue, 09 Sep 2008 19:29:10 +0300
+
+xkeyboard-config (1.3-2) unstable; urgency=high
+
+  * Fix compat rules for Romanian layout (closes: #485702).
+  * Remove some generated files from the source package to clean up the build.
+
+ -- Julien Cristau <jcristau@debian.org>  Thu, 14 Aug 2008 19:51:55 +0200
+
+xkeyboard-config (1.3-1ubuntu2) intrepid; urgency=low
+
+  [ Daniel Gimpelevich ]
+  * debian/patches/us-mac.diff:
+     + Fix for the USA - Macintosh layout. (Closes: #246834)
+
+ -- Артём Попов <artfwo@gmail.com>  Wed, 09 Jul 2008 14:25:18 +0700
+
+xkeyboard-config (1.3-1ubuntu1) intrepid; urgency=low
+
+  [ Артём Попов ]
+  * debian/rules: make update-po in the build target (LP: #213192)
+
+  [ Loic Minier ]
+  * Rebase above change on top of 1.3-1 and target intrepid.
+  * Use "$(MAKE) -C po update-po" instead of "(cd po; make update-po; cd ..)".
+  * Update upload date.
+
+ -- Артём Попов <artfwo@gmail.com>  Tue, 17 Jun 2008 23:40:34 +0200
+
+xkeyboard-config (1.3-1) unstable; urgency=low
+
+  * New upstream release:
+     + add a CA variant for Secwepemctsin language. (Closes: #476702)
+     + change Romanian keymap to use the correct comma
+       characters. (Closes: #481176)
+     + "symbols/ru: default variant is winkeys (till Daniel
+       fixes xkbcomp)" (Closes: #480124)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Wed, 28 May 2008 13:38:30 +0200
+
+xkeyboard-config (1.2~cvs.20080501.1-1) unstable; urgency=low
+
+  * New upstream CVS snapshot from May 1st 2008:
+     + revert Latin American layout. (Closes: #477197)
+     + reactivate right control key in fr(oss). (Closes: #460550)
+     + fix olpc variants in the Afghan layout. (Closes: #461521)
+  * Clean up add_void_definition_pl-324647.diff and apply it before
+    resync_rules_base.diff to avoid unclean patch applying and
+    unapplying. (Closes: #460838)
+  * Document issues with the "Fn" key on some laptops in
+    README.Debian. (Closes: #461489)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Thu, 01 May 2008 01:29:51 +0200
+
+xkeyboard-config (1.1~cvs.20080104.1-1) unstable; urgency=low
+
+  * New upstream CVS snapshot from January 4th 2008:
+     + fixed Latin American layout. (Closes: #444035)
+     + fixed Cherry CyMotion Master Linux layout. (Closes: #343929)
+     + fixed HP Compaq nx9020 layout. (Closes: #395883)
+     + split Serbia and Montenegro. (Closes: #451622)
+     + added fr(nodeadkeys) to mac. (Closes: #456942)
+     + fixed mapping for shift+backslash in "il" keyboard. (Closes: #457927)
+     + added English quotation marks to intl keymaps. (Closes: #453675)
+  * debian/control:
+     + bumped Standards-Version to 3.7.3.
+     + used Vcs-Git and Vcs-Browser fields.
+     + use a Homepage field.
+  * Refreshed resync_rules_base.diff. (Closes: #442942)
+  * Documented the creation of a custom layout in README.Debian and
+    made /usr/share/X11/xkb/rules/base.xml a symlink to
+    /etc/X11/xkb/base.xml.
+    (Closes: #410628, #410903, #438940)
+  * Documented how to remove conffiles left in /etc/X11/xkb/ in
+    README.Debian. (Closes: #366180)
+  * New patch: add_void_definition_pl-324647.diff
+     + don't use rules/latin's definitions for alt+{w,q,f}.
+       (Closes: #324647)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sun, 13 Jan 2008 15:33:54 +0100
+
+xkeyboard-config (1.0~cvs.20070916-1) unstable; urgency=low
+
+  * New upstream CVS snapshot from September 16th 2007:
+     + fix evdev layout. (Closes: #442479)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sun, 16 Sep 2007 18:51:30 +0200
+
+xkeyboard-config (1.0~cvs.20070914-1) unstable; urgency=low
+
+  * New upstream CVS snapshot from September 14th 2007:
+     + advertise all Romanian layouts. Thanks Eddy Petrișor for the
+       patch. (Closes: #436993)
+     + fix ctrl:swapcaps. (Closes: #410060)
+     + add missing virtual keys from evdev keycodes. Thanks Yann
+       Vernier for the patch. (Closes: #432613)
+     + support Asus 6000 series laptop keyboard. Thanks Arnout Boelens
+     for the patch. (Closes: #383953)
+  * Update debian/*.dir files.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Fri, 14 Sep 2007 19:12:27 +0200
+
+xkeyboard-config (1.0~cvs.20070721-1) unstable; urgency=low
+
+  [ Julien Cristau ]
+  * Fix watch file to look for tarballs at http://xlibs.fd.o/xkbdesc/
+
+  [ Mohammed Adnène Trojette ]
+  * New upstream CVS snapshot from July 21st 2007:
+     + include xkb files for the Happy Hacking keyboard. (Closes: #167370)
+     + fix us layout. (Closes: #421532)
+     + fix se layout. (Closes: #425304)
+     + fix de+nodeadkey layout. (Closes: #432297)
+  * Patches refreshed:
+     + fix FTBFS. (Closes: #424112)
+  * Patches obsoleted:
+     + greek.diff.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sat, 21 Jul 2007 20:51:07 +0200
+
+xkeyboard-config (0.9+cvs.20070428-1) experimental; urgency=low
+
+  * Add myself to Uploaders. (Closes: #401777)
+  * CVS Snapshot from April 24 2007:
+     + fix Uzbek layout. (Closes: #412528)
+     + fix typo in compat/misc. (Closes: #412352)
+     + adjust Dutch layout. (Closes: #286581)
+     + fix keymap on iBook G4 Japanese keyboard. (Closes: #374070)
+     + fix <K6C> key in symbols/inet. (Closes: #409982)
+     + update Finnish layout. (Closes: #405207)
+     + add Logitech Cordless Desktop Optical support. (Closes: #391192)
+     + fix a jp106 backslash/yen issue. (Closes: #280579)
+  * Patches refreshed:
+     + resync_rules_base.diff.
+  * Patches obsoleted or merged upstream:
+     + revert_bz8572.diff
+     + po.diff
+     + bz1576.diff
+     + bz8668.diff
+     + compatibility.diff
+     + japan.diff
+  * Patches to send upstream:
+     + 001_keypad_comma.diff: add keypad:comma option. (Closes: #409117)
+  * Bump debhelper compatibility to 5.
+  * Remove reference to xlibs. (Closes: #413620)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sat, 28 Apr 2007 20:35:01 +0200
+
+xkeyboard-config (0.9-4) unstable; urgency=low
+
+  [ Denis Barbier ]
+  + debian/patches/po.diff: Escape <> characters in Slovenian
+    PO file, base.xml was not a valid XML file.  Closes: #394060
+
+  [ Loic Minier ]
+  * Upload.
+
+ -- Denis Barbier <barbier@debian.org>  Fri, 20 Oct 2006 22:24:57 +0200
+
+xkeyboard-config (0.9-3) unstable; urgency=high
+
+  [ Denis Barbier ]
+  * debian/patches/resync_rules_base.diff: Regenerate to fix FTBFS.
+    Closes: #393166  Thanks Andreas Jochens.
+    Urgency set to high because of the FTBFS.
+
+  + debian/patches/po.diff: Update Slovenian PO file.
+
+  + debian/patches/bz8668.diff: New patch to fix Ctrl-Alt-Backspace
+    with Macintosh us layout.
+
+  * debian/patches/revert_bz8572.diff: Sync to CVS.
+
+  [ Drew Parsons ]
+  * Thank you to Denis for the hard work keeping the keyboards typing.
+
+ -- Drew Parsons <dparsons@debian.org>  Wed, 18 Oct 2006 10:55:11 +1000
+
+xkeyboard-config (0.9-2) unstable; urgency=low
+
+  + debian/patches/po.diff: Update Hungarian PO file.
+
+  + debian/patches/revert_bz8572.diff: New patch to revert changes
+    introduced in BZ8572, they cause trouble with Ctrl-Alt-F*
+    combinations.  Closes: #392911.
+
+ -- Denis Barbier <barbier@debian.org>  Sat, 14 Oct 2006 19:55:14 +0200
+
+xkeyboard-config (0.9-1) unstable; urgency=low
+
+  * New upstream release.
+    Almost all upstream fixes were already backported, this package
+    is very similar to 0.8-18.
+
+  * Drop patches merged upstream:
+    + debian/patches/latin_quotes.diff
+    + debian/patches/fix_xkbcomp_crash.diff
+
+  * This version adds leftsinglequotemark and rightsinglequotemark to
+    symbols/us(alt-intl).  Closes: #391995 Thanks Jan Willem Stumpel.
+
+ -- Denis Barbier <barbier@debian.org>  Wed, 11 Oct 2006 22:50:37 +0200
+
+xkeyboard-config (0.8-18) unstable; urgency=low
+
+  * Sync to CVS 2006-10-05.
+    Drop patches merged upstream:
+    + debian/patches/mac-gb-euro.diff
+    + debian/patches/symbols-typos.diff
+    + debian/patches/finnish-macron.diff
+    + debian/patches/rewrite-mac.diff
+
+  * debian/patches/japan.diff: New patch so that the latin variant of
+    jp layout is selected with multiple layouts.
+
+ -- Denis Barbier <barbier@debian.org>  Thu,  5 Oct 2006 22:12:56 +0200
+
+xkeyboard-config (0.8-17) unstable; urgency=low
+
+  * debian/patches/finnish-macron.diff: In symbols.fi, replace macron
+    by dead_macron.  Closes: #387320  Thanks Martin-Éric Racine.
+
+  * debian/patches/symbols-typos.diff: Fix typos in keysym names.
+    Closes: #390876  Thanks Sam Hocevar.
+
+  * debian/patches/rewrite-mac.diff: Add includes to mac layouts in
+    symbols/* to reduce key definitions.
+
+ -- Denis Barbier <barbier@debian.org>  Tue,  3 Oct 2006 22:18:31 +0200
+
+xkeyboard-config (0.8-16) unstable; urgency=low
+
+  * Sync to CVS 2006-10-02.
+    + Macintosh layouts are also available for PC models.
+    + New nbsp:* options to add nobreakspace keysym on space key.
+      Closes: #361777  Thanks Samuel Thibault.
+
+  * Thix patch has been merged upstream and is removed:
+    + debian/patches/thinkpad.diff
+
+  * debian/patches/unhide_lv3_enter_switch.diff: New patch to
+    expose lv3:enter_switch, it can be useful when using pc105
+    model on a Mac laptop.
+
+ -- Denis Barbier <barbier@debian.org>  Tue,  3 Oct 2006 00:35:01 +0200
+
+xkeyboard-config (0.8-15) unstable; urgency=low
+
+  * debian/patches/greek.diff: New patch to replace dead_horn and
+    dead_ogonek by U0313/U0314, which are the correct breathing
+    signs for polytonic Greek.  This change can be performed now
+    that an updated el_GR.UTF-8/Compose file hit testing.
+    Closes: #386385  Thanks Jan Willem Stumpel.
+
+  * debian/patches/compatibility.diff: Add compatibility rules to
+    make sure that changes in symbols/pc do not cause trouble.
+    Closes: #389589  Thanks Robert Bihlmeyer.
+
+ -- Denis Barbier <barbier@debian.org>  Wed, 27 Sep 2006 23:19:39 +0200
+
+xkeyboard-config (0.8-14) unstable; urgency=low
+
+  * Sync to CVS 2006-09-25.
+  * These patches have been merged upstream and are removed:
+    + debian/patches/macbook_layouts.diff
+    + debian/patches/fr.po.diff
+
+  * debian/patches/bz1576.diff: Minor fixes in Macintosh layouts.
+
+  * debian/patches/thinkpad.diff: Fix geometry/thinkpad.
+    Closes: #389358  Thanks Wouter Cloetens
+
+ -- Denis Barbier <barbier@debian.org>  Mon, 25 Sep 2006 21:38:39 +0200
+
+xkeyboard-config (0.8-13) unstable; urgency=low
+
+  * Sync to CVS 2006-09-18.
+    Support for Macintosh keyboards has been fully reworked, deeply
+    tested by debian-powerpc readers and merged upstream.  Macintosh
+    layouts can now be as customized as PC ones with options.
+    Closes: #121297, #111905, #166478, #234113, #319423, #256442
+
+  * These patches are removed because they are obsolete:
+    + debian/patches/cvs_revert.diff
+    + debian/patches/inet.diff
+    + debian/patches/mac_fnkeys.diff
+    + debian/patches/macintosh.diff
+    + debian/patches/macintosh-gb.diff
+    + debian/patches/mac_swap_kp.diff
+    + debian/patches/mac_nodeadkeys.diff
+
+  * debian/README.Debian: Replace its obsolete content by informations 
+    to powerpc users.
+
+  * debian/patches/fix_xkbcomp_crash.diff: New patch to fix an
+    xkbcomp crash introduced in CVS and not fixed yet.
+    Closes: #387917 Thanks Helge Kreutzmann and Wolfgang Pfeiffer.
+
+  * debian/patches/mac_poweroff.diff: Add the power key to Apple
+    laptops.  Thanks Jörg Sommer.
+
+  * debian/patches/macbook_layouts.diff: For MacBook models, load
+    symbols from symbols/macintosh_vndr/* instead of symbols/*.
+
+  * debian/patches/mac-gb-euro.diff: New patch to add the Euro sign
+    on key 2 for the Macintosh gb layout.
+
+  * debian/patches/fr.po.diff: Fix po/fr.po, the version currently
+    in CVS is broken.
+
+ -- Denis Barbier <barbier@debian.org>  Sat, 23 Sep 2006 00:18:38 +0200
+
+xkeyboard-config (0.8-12) unstable; urgency=low
+
+  * Sync to CVS 2006-09-05.
+    + Closes: #362850: support alt-caps to toggle groups
+    Drop patches merged upstream:
+    + debian/patches/fix_symbols_hr.diff
+    + debian/patches/fix_symbols_key_type.diff
+    + debian/patches/ralt_switch_multikey.diff
+    + debian/patches/rearrange_options.diff
+    + debian/patches/microsoft.diff
+
+ -- Denis Barbier <barbier@debian.org>  Tue,  5 Sep 2006 19:48:57 +0200
+
+xkeyboard-config (0.8-11) unstable; urgency=low
+
+  * debian/patches/rearrange_options.diff: New patch to modify options
+    order in rules/base so that altwin:meta_win can be overriden by
+    other options.  Closes: #385355  Thanks Ben Mueller
+
+  * debian/patches/fix_symbols_key_type.diff: Several layouts did
+    define global key types, so keys for other groups were broken.
+    Closes: #373692, #385970  Thanks Robert Marlow and Jan Willem Stumpel
+
+ -- Denis Barbier <barbier@debian.org>  Mon,  4 Sep 2006 21:50:00 +0200
+
+xkeyboard-config (0.8-10) unstable; urgency=low
+
+  * Really fix Mac nodeadkeys variants, rules/base was not properly
+    rebuilt.
+
+ -- Denis Barbier <barbier@debian.org>  Thu, 31 Aug 2006 00:30:25 +0200
+
+xkeyboard-config (0.8-9) unstable; urgency=low
+
+  * debian/patches/resync_rules_base.diff: New patch to help keeping
+    rules/base.* and rules/compat/base.* files up-to-date.
+
+  * debian/patches/mac_swap_kp.diff: New patch to swap KP_Delete and
+    KP_Separator on Mac keyboards.  Closes: #328125  Thanks Ben Mueller
+
+  * debian/patches/latin_quotes.diff: New patch; grave and apostrophe
+    on the 4th level can be provided via simpler keystrokes.  They were
+    historically provided as alternative quotes, but these ones are
+    better alternatives.  Closes: #308196 Thanks Mark Sheppard
+
+  * debian/patches/mac_nodeadkeys.diff:  New patch to fix nodeadkeys variants,
+    they were badly broken.
+
+ -- Denis Barbier <barbier@debian.org>  Wed, 30 Aug 2006 22:17:59 +0200
+
+xkeyboard-config (0.8-8) unstable; urgency=low
+
+  * Sync to CVS 2006-08-28.
+    + symbols/inet, keycodes/evdev: updated evdev
+    + symbols/pl: added pl(csb)
+    + symbols/bt: fixed Bhutan
+    + symbols/us: added dvorak-classic  Closes: #257626, #264647
+    + symbols/inet: added acer_c300
+    + symbols/lk: updated Sinhala
+    + symbols/de: added Mac variants
+    + symbols/ch: fixed KPDL in ch(de_mac)
+
+  * debian/patches/update-bt.diff: Patch dropped, merged upstream.
+
+  * debian/patches/fix_symbols_hr.diff: New patch to fix Croatian layout,
+    some differences with previous XFree86 keymap had been introduced
+    in xkeyboard-config.  Closes: #379292  Thanks Josip Rodin
+
+  * debian/patches/mac_fnkeys.diff: New patch to fix console switching
+    with Macintosh us layout.  Closes: #370564  Thanks Ben Mueller
+
+  * debian/patches/ralt_switch_multikey.diff: New patch to enable again
+    lv3:ralt_switch_multikey which had been dropped from xkeyboard-config.
+    Closes: #364435  Thanks Klaus Ethgen
+
+  * debian/patches/microsoft.diff: New patch to enable again the
+    'microsoft' model, it had been disabled by error in previous uploads.
+    Closes: #379917 Thanks Phil Armstrong
+
+  * debian/patches/inet.diff: New patch to add apple, apple_laptop,
+    hpxt1000 and latitude to $inetkbds.  Closes: #381882
+    Thanks Steinar H. Gunderson
+
+ -- Denis Barbier <barbier@debian.org>  Sat, 26 Aug 2006 14:54:51 +0200
+
+xkeyboard-config (0.8-7) unstable; urgency=low
+
+  * debian/patches/macintosh-gb.diff: New patch to fix <LSGT> and <TLDE> keys.
+    Closes: #379148 Thanks Roger Leigh
+
+  * debian/patches/macintosh.diff: New patch to include 'latin' layout.
+    Closes: #366615, #363525
+
+  * debian/patches/update-bt.diff: New patch to update the Bhutanese layout.
+    Closes: #378309 Thanks Christian Perrier
+
+  * debian/rules: Make sure that rules/base{,.lst,.xml} files are rebuilt.
+
+ -- Denis Barbier <barbier@debian.org>  Mon, 14 Aug 2006 16:10:41 +0200
+
+xkeyboard-config (0.8-6) unstable; urgency=low
+
+  * debian/control: Move debhelper from Build-Depends-Indep to Build-Depends.
+
+  * debian/control: Bump Standards-Version to 3.7.2, no changes needed.
+
+  * debian/control: Use quilt to manage changes.
+
+  * Sync with CVS 2006-07-02.
+    The following bugs have been fixed upstream:
+    + XF86AudioRaiseVolume is defined twice for Logitech keyboards.
+      Closes: #363925
+    + hr(us) layout apparently broken.  Closes: #373833
+    + symbols/inet and rules/base.* do not match.  Closes: #368885
+    + no korean alphabet (hangul) mapping support.  Closes: #342615
+
+  * Drop fr.po.diff, included upstream.
+
+ -- Denis Barbier <barbier@debian.org>  Sun,  2 Jul 2006 22:11:44 +0200
+
+xkeyboard-config (0.8-5) unstable; urgency=low
+
+  * Add a symlink rules/xfree86 -> rules/base.  Thanks Daniel Stone.
+
+ -- Denis Barbier <barbier@debian.org>  Fri, 14 Apr 2006 22:30:25 +0200
+
+xkeyboard-config (0.8-4) unstable; urgency=low
+
+  * Upload to unstable
+
+ -- David Nusinow <dnusinow@debian.org>  Thu,  6 Apr 2006 19:56:38 -0400
+
+xkeyboard-config (0.8-3) experimental; urgency=low
+
+  * Add a note into NEWS.Debian telling to read README.Debian.
+  * Improve README.Debian again.
+  * Replace /etc/X11/xkb by /usr/share/X11/xkb in docs/README.config too.
+
+ -- Denis Barbier <barbier@debian.org>  Tue, 28 Mar 2006 20:52:21 +0200
+
+xkeyboard-config (0.8-2) experimental; urgency=low
+
+  * Explain in README.Debian how to use xkb-data 0.8 with xorg < 7.0.
+    Thanks Andreas Kroschel  (Closes: #357207)
+  * Update po/fr.po
+
+ -- Denis Barbier <barbier@debian.org>  Thu, 16 Mar 2006 23:27:19 +0100
+
+xkeyboard-config (0.8-1) experimental; urgency=low
+
+  * New upstream release.
+  * This release includes the Khmmer layout.  Closes: #355613
+  * Add Build-Depends-Indep: libxml-parser-perl, which is needed to build rules.xml.
+  * Modify debian/rules so that xkbcomp is not required to build this package.
+    Closes: #355742
+  * Move XKB files into /usr/share/X11/xkb and purge unmodified configuration file
+    when upgrading from previous xkb-data releases.
+  * Remove xkbcomp symlink, it is no more needed.  Closes: #356529
+  * Set Maintainer to Debian X Strike Force, and myself to Uploaders.
+
+ -- Denis Barbier <barbier@debian.org>  Mon, 13 Mar 2006 21:21:25 +0100
+
+xkeyboard-config (0.6-2) experimental; urgency=low
+
+  * symbols/compose: add CapsLock as a compose key.  Closes: #343287
+    Thanks Andreas Kroschel.
+  * symbols/group: add ScrollLock as a group switcher key.
+    Thanks Andreas Kroschel.
+
+ -- Denis Barbier <barbier@debian.org>  Fri, 16 Dec 2005 17:54:43 +0100
+
+xkeyboard-config (0.6-1) experimental; urgency=low
+
+  * New upstream release.
+  * debian/control: Bump Standards-Version to 3.6.2, no changes needed
+    in packaging.
+  * debian/README.Debian: Add a note explaining how to use xkeyboard-config.
+  * Since binary package is xkb-data, files are installed under
+    /etc/X11/xkb-data and not /etc/X11/xkeyboard-config.
+
+ -- Denis Barbier <barbier@debian.org>  Thu,  6 Oct 2005 23:19:59 +0200
+
+xkeyboard-config (0.5-2) experimental; urgency=low
+
+  * Some packages have a versioned dependency on xlibs, so Replaces
+    does not work here.  For the moment, XKB files are moved to
+    /etc/X11/xkeyboard-config
+
+ -- Denis Barbier <barbier@debian.org>  Thu, 17 Mar 2005 22:25:02 +0100
+
+xkeyboard-config (0.5-1) experimental; urgency=low
+
+  * Initial upload.  Closes: #274299
+  * Uploaded to experimental until we decide what to do with the
+    xlibs <-> xkb-data transition.
+
+ -- Denis Barbier <barbier@debian.org>  Wed,  2 Mar 2005 22:28:23 +0100
+

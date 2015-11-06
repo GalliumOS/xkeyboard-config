@@ -1,0 +1,78 @@
+--- a/rules/base.lists.base.part
++++ b/rules/base.lists.base.part
+@@ -36,7 +36,8 @@
+               sk1300 sk2500 sk6200 sk7100 \
+               sven sven303 symplon \
+               toshiba_s3000 trust trustda \
+-              unitekkb1925 yahoo
++              unitekkb1925 yahoo \
++              intelligent_keyboard_k04
+ 
+ ! $inetmediakbds = acer_ferrari4k acer_laptop btc5090 btc9019u cherryblueb \
+ 		cherrybluea herrycyboard chicony042 compaqik13 compaqik18 \
+--- a/rules/base.xml.in
++++ b/rules/base.xml.in
+@@ -1290,6 +1290,13 @@
+     </model>
+     <model>
+       <configItem>
++        <name>intelligent_keyboard_k04</name>
++        <description>Intelligent Keyboard K04</description>
++        <vendor>Generic</vendor>
++      </configItem>
++    </model>
++    <model>
++      <configItem>
+        <name>htcdream</name>
+        <_description>Htc Dream phone</_description>
+        <vendor>htc</vendor>
+--- a/rules/evdev.xml.in
++++ b/rules/evdev.xml.in
+@@ -1290,6 +1290,13 @@
+     </model>
+     <model>
+       <configItem>
++        <name>intelligent_keyboard_k04</name>
++        <description>Intelligent Keyboard K04</description>
++        <vendor>Generic</vendor>
++      </configItem>
++    </model>
++    <model>
++      <configItem>
+        <name>htcdream</name>
+        <_description>Htc Dream phone</_description>
+        <vendor>htc</vendor>
+--- a/symbols/inet
++++ b/symbols/inet
+@@ -1851,6 +1851,31 @@
+ };
+ 
+ 
++//Intelligent Keyboard K04
++partial alphanumeric_keys
++xkb_symbols "intelligent_keyboard_k04" {
++    key <I22> { [ XF86AudioPlay, XF86AudioPause ] };
++    key <I10> { [ XF86AudioPrev                 ] };
++    key <I24> { [ XF86AudioStop                 ] };
++    key <I19> { [ XF86AudioNext                 ] };
++    key <I6D> { [ XF86AudioMedia                ] };
++    key <I30> { [ XF86AudioRaiseVolume          ] };
++    key <I20> { [ XF86AudioMute                 ] };
++    key <I2E> { [ XF86AudioLowerVolume          ] };
++    key <I6A> { [ XF86Back                      ] };
++    key <I69> { [ XF86Forward                   ] };
++    key <I68> { [ XF86Stop                      ] };
++    key <I67> { [ XF86Refresh                   ] };
++    key <I65> { [ XF86Search                    ] };
++    key <I66> { [ XF86Favorites                 ] };
++    key <I32> { [ XF86HomePage                  ] };
++    key <I6C> { [ XF86Mail                      ] };
++    key <I63> { [ XF86WakeUp                    ] };
++    key <I6B> { [ XF86MyComputer                ] };
++    key <I21> { [ XF86Calculator                ] };
++    key <I5F> { [ XF86Sleep                     ] };
++};
++
+ // HTC Dream
+ partial alphanumeric_keys
+ xkb_symbols "htcdream" {

@@ -1,0 +1,14 @@
+Package: xkb-data-i18n
+Source: xkeyboard-config
+Version: 2.12.1-1ubuntu1
+Architecture: all
+Maintainer: Ubuntu X-SWAT <ubuntu-x@lists.ubuntu.com>
+Installed-Size: 2766
+Section: x11
+Priority: extra
+Multi-Arch: foreign
+Homepage: http://www.freedesktop.org/Software/XKeyboardConfig
+Description: X Keyboard Extension (XKB) configuration data translations
+ This package contains translations used by xkb-data.  Users should
+ not install this package.
+Original-Maintainer: Debian X Strike Force <debian-x@lists.debian.org>

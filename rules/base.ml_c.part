@@ -1,0 +1,6 @@
+  chromebook    *               =       complete+chromebook
+  pc98		nec_vndr/jp	=	pc98(basic)
+  *		jp		=	complete+japan
+  olpc          *               =       olpc
+  olpcm         *               =       olpc
+  *		*		=	complete
