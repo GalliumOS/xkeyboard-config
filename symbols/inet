@@ -1851,31 +1851,6 @@ xkb_symbols "pc105" {
 };
 
 
-//Intelligent Keyboard K04
-partial alphanumeric_keys
-xkb_symbols "intelligent_keyboard_k04" {
-    key <I22> { [ XF86AudioPlay, XF86AudioPause ] };
-    key <I10> { [ XF86AudioPrev                 ] };
-    key <I24> { [ XF86AudioStop                 ] };
-    key <I19> { [ XF86AudioNext                 ] };
-    key <I6D> { [ XF86AudioMedia                ] };
-    key <I30> { [ XF86AudioRaiseVolume          ] };
-    key <I20> { [ XF86AudioMute                 ] };
-    key <I2E> { [ XF86AudioLowerVolume          ] };
-    key <I6A> { [ XF86Back                      ] };
-    key <I69> { [ XF86Forward                   ] };
-    key <I68> { [ XF86Stop                      ] };
-    key <I67> { [ XF86Refresh                   ] };
-    key <I65> { [ XF86Search                    ] };
-    key <I66> { [ XF86Favorites                 ] };
-    key <I32> { [ XF86HomePage                  ] };
-    key <I6C> { [ XF86Mail                      ] };
-    key <I63> { [ XF86WakeUp                    ] };
-    key <I6B> { [ XF86MyComputer                ] };
-    key <I21> { [ XF86Calculator                ] };
-    key <I5F> { [ XF86Sleep                     ] };
-};
-
 // HTC Dream
 partial alphanumeric_keys
 xkb_symbols "htcdream" {

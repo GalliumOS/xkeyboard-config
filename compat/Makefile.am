@@ -1,7 +1,7 @@
 compatdir = $(xkb_base)/compat
 
 compat_DATA = \
-accessx basic caps complete chromebook \
+accessx basic caps complete \
 iso9995 \
 japan ledcaps \
 lednum ledscroll level5 \

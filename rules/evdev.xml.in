@@ -1290,24 +1290,10 @@
     </model>
     <model>
       <configItem>
-        <name>intelligent_keyboard_k04</name>
-        <description>Intelligent Keyboard K04</description>
-        <vendor>Generic</vendor>
-      </configItem>
-    </model>
-    <model>
-      <configItem>
        <name>htcdream</name>
        <_description>Htc Dream phone</_description>
        <vendor>htc</vendor>
      </configItem>
-    </model>
-    <model>
-      <configItem>
-       <name>chromebook</name>
-       <description>Chromebook</description>
-       <vendor>Google</vendor>
-      </configItem>
     </model>
   </modelList>
   <layoutList>

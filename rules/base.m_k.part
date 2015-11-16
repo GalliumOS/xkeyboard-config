@@ -7,7 +7,6 @@
  $applealu	=	macintosh(alukbd)
   macintosh_hhk	=	macintosh(hhk)
   macintosh_old	=	macintosh(old)
- $macbooks	=	macintosh+macintosh(goodmap)
  $macs   	=	macintosh
   thinkpadz60	=	xfree86(thinkpadz60)
   *		=	xfree86
