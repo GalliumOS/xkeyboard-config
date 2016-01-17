@@ -1,14 +1,15 @@
 xkeyboard-config (2.12-1ubuntu1-galliumos2) vivid; urgency=medium
 
   * Additional chromebook keymaps and symbols
+  * Added chromebook support from: http://pastebin.com/PrPYW6SA
 
  -- Hugh Greenberg <hugh@galliumos.org>  Sat, 16 Jan 2016 19:19:04 +0400
 
-xkeyboard-config (2.12-1ubuntu1-galliumos1) vivid; urgency=medium
+xkeyboard-config (2.12-1ubuntu1-galliumos1) utopic; urgency=medium
 
-  * Added chromebook support from: http://pastebin.com/PrPYW6SA
-
- -- Hugh Greenberg <hugh@galliumos.org>  Fri, 06 Nov 2015 19:19:04 +0400
+  * Set package version to match provenance
+ 
+ -- reynhout <reynhout@galliumos.org>  Sun, 10 Jan 2016 21:05:33 +0000
 
 xkeyboard-config (2.12-1ubuntu1) utopic; urgency=medium
 
