@@ -17,7 +17,7 @@
  altwin capslock compose ctrl empty eurosign rupeesign group inet \
 -keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo
 +keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo chromebook \
-+chromebook_m chromebook_m_ralt chromebook_ralt
++chromebook_ralt
  
  EXTRA_DIST = $(symbols_DATA)
 --- a/rules/base.ml1_c.part
@@ -26,9 +26,6 @@
 -  *		*		=	complete
 +  chromebook            *       =       complete+chromebook
 +  chromebook_ralt       *       =       complete+chromebook
-+  chromebook_m          *       =       complete+chromebook
-+  chromebook_m_ralt     *       =       complete+chromebook
-+  chromebook_no_m       *       =       complete
 +  *		        *	=	complete
 --- a/rules/base.xml.in
 +++ b/rules/base.xml.in
@@ -37,35 +34,14 @@
      <model>
        <configItem>
 +        <name>chromebook</name>
-+        <description>Chromebook | Search overlay</description>
++        <description>Chromebook | Search overlay | F Keys mapped to numbers</description>
 +        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
 +    <model>
 +      <configItem>
 +        <name>chromebook_ralt</name>
-+        <description>Chromebook | Right alt overlay</description>
-+        <vendor>Google</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>chromebook_m</name>
-+        <description>Chromebook | Search overlay | F keys mapped to media keys</description>
-+        <vendor>Google</vendor>
-+      </configItem>
-+    </model>
-+<model>
-+      <configItem>
-+        <name>chromebook_m_ralt</name>
-+        <description>Chromebook | Right alt overlay | F keys mapped to media keys</description>
-+        <vendor>Google</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>chromebook_no_m</name>
-+        <description>Chromebook | No overlay | F keys mapped to media keys</description>
++        <description>Chromebook | Right alt overlay | F Keys mapped to numbers</description>
 +        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
@@ -82,9 +58,6 @@
 -  *             =   +inet(evdev)
 +  chromebook         =   +inet(evdev)+chromebook(overlay)
 +  chromebook_ralt    =   +inet(evdev)+chromebook_ralt(overlay)
-+  chromebook_m       =   +inet(evdev)+chromebook_m(overlay)
-+  chromebook_m_ralt  =   +inet(evdev)+chromebook_m_ralt(overlay)
-+  chromebook_no_m    =   +inet(evdev)
 +  $evdevkbds         =   +inet(evdev)+inet(%m)
 +  applealu_jis       =   +inet(evdev)+macintosh_vndr/jp(alujiskeys)
 +  *                  =   +inet(evdev)
@@ -97,35 +70,14 @@
 +    <model>
 +      <configItem>
 +        <name>chromebook</name>
-+        <description>Chromebook | Search overlay</description>
++        <description>Chromebook | Search overlay | F Keys mapped to numbers</description>
 +        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
 +    <model>
 +      <configItem>
 +       <name>chromebook_ralt</name>
-+       <description>Chromebook | Right alt overlay</description>
-+       <vendor>Google</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+       <name>chromebook_m</name>
-+       <description>Chromebook | Search overlay | F keys mapped to media keys</description>
-+       <vendor>Google</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+       <name>chromebook_m_ralt</name>
-+       <description>Chromebook | Right alt overlay | F keys mapped to media keys</description>
-+       <vendor>Google</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+       <name>chromebook_no_m</name>
-+       <description>Chromebook | No overlay | F keys mapped to media keys</description>
++       <description>Chromebook | Right alt overlay | F Keys mapped to numbers</description>
 +       <vendor>Google</vendor>
 +      </configItem>
 +    </model>
@@ -140,7 +92,6 @@
    olpcm         =       evdev+olpc(olpcm)
 +  chromebook_m  =       evdev+chromebook_m(media)
 +  chromebook_m_ralt  =  evdev+chromebook_m(media)
-+  chromebook_no_m  =    evdev+chromebook_m(media)
    *		=	evdev
 --- /dev/null
 +++ b/symbols/chromebook
@@ -148,7 +99,7 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
-+    key <LWIN> { [ Overlay1_Enable ], overlay1=<LWIN> };
++    key <I225> { [ Overlay1_Enable ], overlay1=<I225> };
 +
 +    key <AB09> { overlay1=<INS> };
 +
@@ -156,17 +107,6 @@
 +    key <RGHT> { overlay1=<END> };
 +    key <UP>   { overlay1=<PGUP> };
 +    key <DOWN> { overlay1=<PGDN> };
-+
-+    key <FK01> { overlay1=<I166> };
-+    key <FK02> { overlay1=<I167> };
-+    key <FK03> { overlay1=<I181> };
-+    key <FK04> { overlay1=<I160> };
-+    key <FK05> { overlay1=<I235> };
-+    key <FK06> { overlay1=<I232> }; // XF86MonBrightnessDown
-+    key <FK07> { overlay1=<I233> }; // XF86MonBrightnessUp
-+    key <FK08> { overlay1=<MUTE> };
-+    key <FK09> { overlay1=<VOL-> };
-+    key <FK10> { overlay1=<VOL+> };
 +
 +    key <AE01> { overlay1=<FK01> };
 +    key <AE02> { overlay1=<FK02> };
@@ -177,13 +117,13 @@
 +    key <AE07> { overlay1=<FK07> };
 +    key <AE08> { overlay1=<FK08> };
 +    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
++    key <AE10> { overlay1=<FK10> };
++    key <AE11> { overlay1=<FK11> };
++    key <AE12> { overlay1=<FK12> };
++
 +    key <BKSP> { overlay1=<DELE> };
 +
 +    key <LALT> { overlay1=<CAPS> };
-+    key <RALT> { overlay1=<CAPS> };
 +
 +    // For some strange reason, some Super_R events are triggered when
 +    // the Search key is released (i.e. with overlay on).
@@ -204,112 +144,12 @@
 +    };
 +};
 --- /dev/null
-+++ b/symbols/chromebook_m
-@@ -0,0 +1,48 @@
-+// This mapping assumes that inet(evdev) will also be sourced
-+partial
-+xkb_symbols "overlay" {
-+    key <LWIN> { [ Overlay1_Enable ], overlay1=<LWIN> };
-+
-+    key <AB09> { overlay1=<INS> };
-+
-+    key <LEFT> { overlay1=<HOME> };
-+    key <RGHT> { overlay1=<END> };
-+    key <UP>   { overlay1=<PGUP> };
-+    key <DOWN> { overlay1=<PGDN> };
-+
-+    key <I166> { overlay1=<FK01> };
-+    key <I167> { overlay1=<FK02> };
-+    key <I181> { overlay1=<FK03> };
-+    key <I160> { overlay1=<FK04> };
-+    key <I235> { overlay1=<FK05> };
-+    key <I232> { overlay1=<FK06> };
-+    key <I233> { overlay1=<FK07> };
-+    key <MUTE> { overlay1=<FK08> };
-+    key <VOL-> { overlay1=<FK09> };
-+    key <VOL+> { overlay1=<FK10> };
-+
-+    key <AE01> { overlay1=<FK01> };
-+    key <AE02> { overlay1=<FK02> };
-+    key <AE03> { overlay1=<FK03> };
-+    key <AE04> { overlay1=<FK04> };
-+    key <AE05> { overlay1=<FK05> };
-+    key <AE06> { overlay1=<FK06> };
-+    key <AE07> { overlay1=<FK07> };
-+    key <AE08> { overlay1=<FK08> };
-+    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
-+    key <BKSP> { overlay1=<DELE> };
-+
-+    key <LALT> { overlay1=<CAPS> };
-+    key <RALT> { overlay1=<CAPS> };
-+
-+    // For some strange reason, some Super_R events are triggered when
-+    // the Search key is released (i.e. with overlay on).
-+    // This maps RWIN to a dummy key (<I253>), to make sure we catch it.
-+    key <RWIN> { [ NoSymbol ], overlay1=<I253> };
-+
-+    // Map dummy key to no symbol
-+    key <I253> { [ NoSymbol ] };
-+};
---- /dev/null
-+++ b/symbols/chromebook_m_ralt
-@@ -0,0 +1,46 @@
-+// This mapping assumes that inet(evdev) will also be sourced
-+partial
-+xkb_symbols "overlay" {
-+    key <RALT> { [ Overlay1_Enable ], overlay1=<RALT> };
-+
-+    key <AB09> { overlay1=<INS> };
-+
-+    key <LEFT> { overlay1=<HOME> };
-+    key <RGHT> { overlay1=<END> };
-+    key <UP>   { overlay1=<PGUP> };
-+    key <DOWN> { overlay1=<PGDN> };
-+
-+    key <I166> { overlay1=<FK01> };
-+    key <I167> { overlay1=<FK02> };
-+    key <I181> { overlay1=<FK03> };
-+    key <I160> { overlay1=<FK04> };
-+    key <I235> { overlay1=<FK05> };
-+    key <I232> { overlay1=<FK06> };
-+    key <I233> { overlay1=<FK07> };
-+    key <MUTE> { overlay1=<FK08> };
-+    key <VOL-> { overlay1=<FK09> };
-+    key <VOL+> { overlay1=<FK10> };
-+
-+    key <AE01> { overlay1=<FK01> };
-+    key <AE02> { overlay1=<FK02> };
-+    key <AE03> { overlay1=<FK03> };
-+    key <AE04> { overlay1=<FK04> };
-+    key <AE05> { overlay1=<FK05> };
-+    key <AE06> { overlay1=<FK06> };
-+    key <AE07> { overlay1=<FK07> };
-+    key <AE08> { overlay1=<FK08> };
-+    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
-+    key <BKSP> { overlay1=<DELE> };
-+
-+
-+    // For some strange reason, some LALT events are triggered when
-+    // the RALT key is released (i.e. with overlay on).
-+    // This maps LALT to a dummy key (<I253>), to make sure we catch it.
-+    key <LALT> { [NoSymbol ], overlay1=<I253> };
-+
-+    // Map dummy key to no symbol
-+    key <I253> { [ NoSymbol ] };
-+};
---- /dev/null
 +++ b/symbols/chromebook_ralt
 @@ -0,0 +1,45 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
-+    key <RALT> { [ Overlay1_Enable ], overlay1=<RALT> };
++    key <I108> { [ Overlay1_Enable ], overlay1=<I108> };
 +
 +    key <AB09> { overlay1=<INS> };
 +
@@ -317,17 +157,6 @@
 +    key <RGHT> { overlay1=<END> };
 +    key <UP>   { overlay1=<PGUP> };
 +    key <DOWN> { overlay1=<PGDN> };
-+
-+    key <FK01> { overlay1=<I166> };
-+    key <FK02> { overlay1=<I167> };
-+    key <FK03> { overlay1=<I181> };
-+    key <FK04> { overlay1=<I160> };
-+    key <FK05> { overlay1=<I235> };
-+    key <FK06> { overlay1=<I232> }; // XF86MonBrightnessDown
-+    key <FK07> { overlay1=<I233> }; // XF86MonBrightnessUp
-+    key <FK08> { overlay1=<MUTE> };
-+    key <FK09> { overlay1=<VOL-> };
-+    key <FK10> { overlay1=<VOL+> };
 +
 +    key <AE01> { overlay1=<FK01> };
 +    key <AE02> { overlay1=<FK02> };
@@ -338,10 +167,13 @@
 +    key <AE07> { overlay1=<FK07> };
 +    key <AE08> { overlay1=<FK08> };
 +    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
++    key <AE10> { overlay1=<FK10> };
++    key <AE11> { overlay1=<FK11> };
++    key <AE12> { overlay1=<FK12> };
++
 +    key <BKSP> { overlay1=<DELE> };
++
++    key <LALT> { overlay1=<CAPS> };
 +
 +    // For some strange reason, some LALT events are triggered when
 +    // the RALT key is released (i.e. with overlay on).
@@ -351,40 +183,12 @@
 +    // Map dummy key to no symbol
 +    key <I253> { [ NoSymbol ] };
 +};
---- /dev/null
-+++ b/keycodes/chromebook_m
-@@ -0,0 +1,24 @@
-+default xkb_keycodes "media" {
-+	<FK01> = 166; //Back
-+	<FK02> = 167; //Forward
-+	<FK03> = 181; //Refresh
-+	<FK04> = 160; //Video next
-+	<FK05> = 235; //Video mode
-+	<FK06> = 232; //Brightness down
-+	<FK07> = 233; //Brightness up
-+	<FK08> = 121; //Mute
-+	<FK09> = 122; //Volume -
-+	<FK10> = 123; //Volume +
-+
-+        <I166> = 67;   // #define KEY_BACK
-+        <I167> = 68;   // #define KEY_FORWARD
-+        <I181> = 69;   // #define KEY_REFRESH
-+        <I160> = 70;   // #define KEY_COFFEE
-+        <I235> = 71;   // #define KEY_SWITCHVIDEOMODE
-+        <I232> = 72;   // #define KEY_BRIGHTNESSDOWN
-+        <I233> = 73;   // #define KEY_BRIGHTNESSUP
-+        <MUTE> = 74;
-+        <VOL-> = 75;
-+        <VOL+> = 76;
-+};
-+
 --- a/keycodes/Makefile.am
 +++ b/keycodes/Makefile.am
 @@ -6,6 +6,7 @@
  aliases \
  amiga \
  ataritt \
-+chromebook_m \
  empty \
  evdev \
  fujitsu \
@@ -398,9 +202,6 @@
 -  *		*		=	complete
 +  chromebook         *               =       complete+chromebook
 +  chromebook_ralt    *               =       complete+chromebook
-+  chromebook_m       *               =       complete+chromebook
-+  chromebook_m_ralt  *               =       complete+chromebook
-+  chromebook_no_m    *               =       complete
 +  pc98		     nec_vndr/jp     =       pc98(basic)
 +  *		     jp		     =       complete+japan
 +  olpc               *               =       olpc
