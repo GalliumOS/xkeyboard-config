@@ -17,55 +17,71 @@
  altwin capslock compose ctrl empty eurosign rupeesign group inet \
 -keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo
 +keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo chromebook \
-+chromebook_m chromebook_m_ralt chromebook_ralt
++chromebook_m chromebook_m_ralt chromebook_ralt chromebook_falco chromebook_falco_ralt
  
  EXTRA_DIST = $(symbols_DATA)
 --- a/rules/base.ml1_c.part
 +++ b/rules/base.ml1_c.part
-@@ -1 +1,6 @@
+@@ -1 +1,8 @@
 -  *		*		=	complete
 +  chromebook            *       =       complete+chromebook
 +  chromebook_ralt       *       =       complete+chromebook
 +  chromebook_m          *       =       complete+chromebook
 +  chromebook_m_ralt     *       =       complete+chromebook
++  chromebook_falco      *       =       complete+chromebook
++  chromebook_falco_ralt *       =       complete+chromebook
 +  chromebook_no_m       *       =       complete
 +  *		        *	=	complete
 --- a/rules/base.xml.in
 +++ b/rules/base.xml.in
-@@ -4,6 +4,41 @@
+@@ -4,6 +4,55 @@
    <modelList>
      <model>
        <configItem>
 +        <name>chromebook</name>
-+        <description>Chromebook | Search overlay</description>
++        <description>Chromebook (most models) | Search overlay</description>
 +        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
 +    <model>
 +      <configItem>
 +        <name>chromebook_ralt</name>
-+        <description>Chromebook | Right alt overlay</description>
++        <description>Chromebook (most models) | Right alt overlay</description>
 +        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
 +    <model>
 +      <configItem>
 +        <name>chromebook_m</name>
-+        <description>Chromebook | Search overlay | F keys mapped to media keys</description>
++        <description>Chromebook (most models) | Search overlay | F keys mapped to media keys</description>
 +        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
-+<model>
++    <model>
 +      <configItem>
 +        <name>chromebook_m_ralt</name>
-+        <description>Chromebook | Right alt overlay | F keys mapped to media keys</description>
++        <description>Chromebook (most models) | Right alt overlay | F keys mapped to media keys</description>
++        <vendor>Google</vendor>
++      </configItem>
++    </model>
++    <model>
++      <configItem>
++        <name>chromebook_falco</name>
++        <description>Chromebook Falco/Pixel/Pixel2 | Search overlay</description>
++        <vendor>Google</vendor>
++      </configItem>
++    </model>
++    <model>
++      <configItem>
++        <name>chromebook_falco_ralt</name>
++        <description>Chromebook Falco/Pixel/Pixel2 | Right alt overlay</description>
 +        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
 +    <model>
 +      <configItem>
 +        <name>chromebook_no_m</name>
-+        <description>Chromebook | No overlay | F keys mapped to media keys</description>
++        <description>Chromebook (most models) | No overlay | F keys mapped to media keys</description>
 +        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
@@ -76,57 +92,73 @@
          <vendor>Generic</vendor>
 --- a/rules/evdev.m_s.part
 +++ b/rules/evdev.m_s.part
-@@ -1,3 +1,8 @@
+@@ -1,3 +1,10 @@
 -  $evdevkbds    =   +inet(evdev)+inet(%m)
 -  applealu_jis  =   +inet(evdev)+macintosh_vndr/jp(alujiskeys)
 -  *             =   +inet(evdev)
-+  chromebook         =   +inet(evdev)+chromebook(overlay)
-+  chromebook_ralt    =   +inet(evdev)+chromebook_ralt(overlay)
-+  chromebook_m       =   +inet(evdev)+chromebook_m(overlay)
-+  chromebook_m_ralt  =   +inet(evdev)+chromebook_m_ralt(overlay)
-+  chromebook_no_m    =   +inet(evdev)
-+  $evdevkbds         =   +inet(evdev)+inet(%m)
-+  applealu_jis       =   +inet(evdev)+macintosh_vndr/jp(alujiskeys)
-+  *                  =   +inet(evdev)
++  chromebook               =   +inet(evdev)+chromebook(overlay)
++  chromebook_ralt          =   +inet(evdev)+chromebook_ralt(overlay)
++  chromebook_m             =   +inet(evdev)+chromebook_m(overlay)
++  chromebook_m_ralt        =   +inet(evdev)+chromebook_m_ralt(overlay)
++  chromebook_falco         =   +inet(evdev)+chromebook_falco(overlay)
++  chromebook_falco_ralt    =   +inet(evdev)+chromebook_falco_ralt(overlay)
++  chromebook_no_m          =   +inet(evdev)
++  $evdevkbds               =   +inet(evdev)+inet(%m)
++  applealu_jis             =   +inet(evdev)+macintosh_vndr/jp(alujiskeys)
++  *                        =   +inet(evdev)
 --- a/rules/evdev.xml.in
 +++ b/rules/evdev.xml.in
-@@ -1302,6 +1302,41 @@
+@@ -1302,6 +1302,55 @@
         <vendor>htc</vendor>
       </configItem>
      </model>
 +    <model>
 +      <configItem>
 +        <name>chromebook</name>
-+        <description>Chromebook | Search overlay</description>
++        <description>Chromebook (most models) | Search overlay</description>
 +        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
 +    <model>
 +      <configItem>
-+       <name>chromebook_ralt</name>
-+       <description>Chromebook | Right alt overlay</description>
-+       <vendor>Google</vendor>
++        <name>chromebook_ralt</name>
++        <description>Chromebook (most models) | Right alt overlay</description>
++        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
 +    <model>
 +      <configItem>
-+       <name>chromebook_m</name>
-+       <description>Chromebook | Search overlay | F keys mapped to media keys</description>
-+       <vendor>Google</vendor>
++        <name>chromebook_m</name>
++        <description>Chromebook (most models) | Search overlay | F keys mapped to media keys</description>
++        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
 +    <model>
 +      <configItem>
-+       <name>chromebook_m_ralt</name>
-+       <description>Chromebook | Right alt overlay | F keys mapped to media keys</description>
-+       <vendor>Google</vendor>
++        <name>chromebook_m_ralt</name>
++        <description>Chromebook (most models) | Right alt overlay | F keys mapped to media keys</description>
++        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
 +    <model>
 +      <configItem>
-+       <name>chromebook_no_m</name>
-+       <description>Chromebook | No overlay | F keys mapped to media keys</description>
-+       <vendor>Google</vendor>
++        <name>chromebook_falco</name>
++        <description>Chromebook Falco/Pixel/Pixel2 | Search overlay</description>
++        <vendor>Google</vendor>
++      </configItem>
++    </model>
++    <model>
++      <configItem>
++        <name>chromebook_falco_ralt</name>
++        <description>Chromebook Falco/Pixel/Pixel2 | Right alt overlay</description>
++        <vendor>Google</vendor>
++      </configItem>
++    </model>
++    <model>
++      <configItem>
++        <name>chromebook_no_m</name>
++        <description>Chromebook (most models) | No overlay | F keys mapped to media keys</description>
++        <vendor>Google</vendor>
 +      </configItem>
 +    </model>
    </modelList>
@@ -256,7 +288,7 @@
 +};
 --- /dev/null
 +++ b/symbols/chromebook_m_ralt
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,37 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
@@ -293,19 +325,10 @@
 +    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
 +    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
 +    key <BKSP> { overlay1=<DELE> };
-+
-+
-+    // For some strange reason, some LALT events are triggered when
-+    // the RALT key is released (i.e. with overlay on).
-+    // This maps LALT to a dummy key (<I253>), to make sure we catch it.
-+    key <LALT> { [NoSymbol ], overlay1=<I253> };
-+
-+    // Map dummy key to no symbol
-+    key <I253> { [ NoSymbol ] };
 +};
 --- /dev/null
 +++ b/symbols/chromebook_ralt
-@@ -0,0 +1,45 @@
+@@ -0,0 +1,39 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
@@ -343,13 +366,7 @@
 +    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
 +    key <BKSP> { overlay1=<DELE> };
 +
-+    // For some strange reason, some LALT events are triggered when
-+    // the RALT key is released (i.e. with overlay on).
-+    // This maps LALT to a dummy key (<I253>), to make sure we catch it.
-+    key <LALT> { [ NoSymbol ], overlay1=<I253> };
-+
-+    // Map dummy key to no symbol
-+    key <I253> { [ NoSymbol ] };
++    key <LALT> { overlay1=<CAPS> };
 +};
 --- /dev/null
 +++ b/keycodes/chromebook_m
@@ -390,19 +407,83 @@
  fujitsu \
 --- a/rules/base.ml_c.part
 +++ b/rules/base.ml_c.part
-@@ -1,5 +1,10 @@
+@@ -1,5 +1,12 @@
 -  pc98		nec_vndr/jp	=	pc98(basic)
 -  *		jp		=	complete+japan
 -  olpc          *               =       olpc
 -  olpcm         *               =       olpc
 -  *		*		=	complete
-+  chromebook         *               =       complete+chromebook
-+  chromebook_ralt    *               =       complete+chromebook
-+  chromebook_m       *               =       complete+chromebook
-+  chromebook_m_ralt  *               =       complete+chromebook
-+  chromebook_no_m    *               =       complete
-+  pc98		     nec_vndr/jp     =       pc98(basic)
-+  *		     jp		     =       complete+japan
-+  olpc               *               =       olpc
-+  olpcm              *               =       olpc
-+  *		     *		     =	     complete
++  chromebook            *               =       complete+chromebook
++  chromebook_ralt       *               =       complete+chromebook
++  chromebook_m          *               =       complete+chromebook
++  chromebook_m_ralt     *               =       complete+chromebook
++  chromebook_falco      *               =       complete+chromebook
++  chromebook_falco_ralt *               =       complete+chromebook
++  chromebook_no_m       *               =       complete
++  pc98		        nec_vndr/jp     =       pc98(basic)
++  *		        jp	        =       complete+japan
++  olpc                  *               =       olpc
++  olpcm                 *               =       olpc
++  *		        *	        =       complete
+--- /dev/null
++++ b/symbols/chromebook_falco
+@@ -0,0 +1,27 @@
++// This mapping assumes that inet(evdev) will also be sourced
++partial
++xkb_symbols "overlay" {
++    key <I225> { [ Overlay1_Enable ], overlay1=<I225> };
++
++    key <AB09> { overlay1=<INS> };
++
++    key <LEFT> { overlay1=<HOME> };
++    key <RGHT> { overlay1=<END> };
++    key <UP>   { overlay1=<PGUP> };
++    key <DOWN> { overlay1=<PGDN> };
++
++    key <AE01> { overlay1=<FK01> };
++    key <AE02> { overlay1=<FK02> };
++    key <AE03> { overlay1=<FK03> };
++    key <AE04> { overlay1=<FK04> };
++    key <AE05> { overlay1=<FK05> };
++    key <AE06> { overlay1=<FK06> };
++    key <AE07> { overlay1=<FK07> };
++    key <AE08> { overlay1=<FK08> };
++    key <AE09> { overlay1=<FK09> };
++    key <AE10> { overlay1=<FK10> };
++    key <AE11> { overlay1=<FK11> };
++    key <AE12> { overlay1=<FK12> };
++
++    key <BKSP> { overlay1=<DELE> };
++};
+\ No newline at end of file
+--- /dev/null
++++ b/symbols/chromebook_falco_ralt
+@@ -0,0 +1,27 @@
++// This mapping assumes that inet(evdev) will also be sourced
++partial
++xkb_symbols "overlay" {
++    key <I108> { [ Overlay1_Enable ], overlay1=<I108> };
++
++    key <AB09> { overlay1=<INS> };
++
++    key <LEFT> { overlay1=<HOME> };
++    key <RGHT> { overlay1=<END> };
++    key <UP>   { overlay1=<PGUP> };
++    key <DOWN> { overlay1=<PGDN> };
++
++    key <AE01> { overlay1=<FK01> };
++    key <AE02> { overlay1=<FK02> };
++    key <AE03> { overlay1=<FK03> };
++    key <AE04> { overlay1=<FK04> };
++    key <AE05> { overlay1=<FK05> };
++    key <AE06> { overlay1=<FK06> };
++    key <AE07> { overlay1=<FK07> };
++    key <AE08> { overlay1=<FK08> };
++    key <AE09> { overlay1=<FK09> };
++    key <AE10> { overlay1=<FK10> };
++    key <AE11> { overlay1=<FK11> };
++    key <AE12> { overlay1=<FK12> };
++
++    key <BKSP> { overlay1=<DELE> };
++};
+\ No newline at end of file
