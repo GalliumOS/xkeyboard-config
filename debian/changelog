@@ -1,3 +1,9 @@
+xkeyboard-config (2.12-1ubuntu1-galliumos7) vivid; urgency=medium
+
+  * Added more keyboard maps for falco/pixel/pixel2 to match the other chromebook maps
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Thu, 25 Feb 2016 19:19:04 +0400
+
 xkeyboard-config (2.12-1ubuntu1-galliumos6) vivid; urgency=medium
 
   * Added keyboard maps for falco/pixel/pixel2 from @Paviluf
