@@ -17,7 +17,7 @@
  altwin capslock compose ctrl empty eurosign rupeesign group inet \
 -keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo
 +keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo chromebook \
-+chromebook_m chromebook_m_ralt chromebook_ralt chromebook_falco chromebook_falco_ralt
++chromebook_m chromebook_m_ralt chromebook_ralt
  
  EXTRA_DIST = $(symbols_DATA)
 --- a/rules/base.ml1_c.part
@@ -116,10 +116,10 @@
 +  chromebook_ralt          =   +inet(evdev)+chromebook_ralt(overlay)
 +  chromebook_m             =   +inet(evdev)+chromebook_m(overlay)
 +  chromebook_m_ralt        =   +inet(evdev)+chromebook_m_ralt(overlay)
-+  chromebook_falco         =   +inet(evdev)+chromebook_falco(overlay)
-+  chromebook_falco_ralt    =   +inet(evdev)+chromebook_falco_ralt(overlay)
-+  chromebook_m_falco       =   +inet(evdev)+chromebook_m_falco(overlay)
-+  chromebook_m_falco_ralt  =   +inet(evdev)+chromebook_m_falco_ralt(overlay)
++  chromebook_falco         =   +inet(evdev)+chromebook(overlay)
++  chromebook_falco_ralt    =   +inet(evdev)+chromebook_ralt(overlay)
++  chromebook_m_falco       =   +inet(evdev)+chromebook_m(overlay)
++  chromebook_m_falco_ralt  =   +inet(evdev)+chromebook_m_ralt(overlay)
 +  chromebook_no_m          =   +inet(evdev)
 +  $evdevkbds               =   +inet(evdev)+inet(%m)
 +  applealu_jis             =   +inet(evdev)+macintosh_vndr/jp(alujiskeys)
@@ -211,11 +211,12 @@
    *		=	evdev
 --- /dev/null
 +++ b/symbols/chromebook
-@@ -0,0 +1,48 @@
+@@ -0,0 +1,49 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
 +    key <LWIN> { [ Overlay1_Enable ], overlay1=<LWIN> };
++    key <I225> { [ Overlay1_Enable ], overlay1=<I225> };
 +
 +    key <AB09> { overlay1=<INS> };
 +
@@ -272,11 +273,12 @@
 +};
 --- /dev/null
 +++ b/symbols/chromebook_m
-@@ -0,0 +1,48 @@
+@@ -0,0 +1,49 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
 +    key <LWIN> { [ Overlay1_Enable ], overlay1=<LWIN> };
++    key <I225> { [ Overlay1_Enable ], overlay1=<I225> };
 +
 +    key <AB09> { overlay1=<INS> };
 +
@@ -465,91 +467,6 @@
 +  olpcm                   *               =       olpc
 +  *		          *	          =       complete
 --- /dev/null
-+++ b/symbols/chromebook_falco
-@@ -0,0 +1,40 @@
-+// This mapping assumes that inet(evdev) will also be sourced
-+partial
-+xkb_symbols "overlay" {
-+    key <I225> { [ Overlay1_Enable ], overlay1=<I225> };
-+
-+    key <AB09> { overlay1=<INS> };
-+
-+    key <LEFT> { overlay1=<HOME> };
-+    key <RGHT> { overlay1=<END> };
-+    key <UP>   { overlay1=<PGUP> };
-+    key <DOWN> { overlay1=<PGDN> };
-+
-+    key <FK01> { overlay1=<I166> };
-+    key <FK02> { overlay1=<I167> };
-+    key <FK03> { overlay1=<I181> };
-+    key <FK04> { overlay1=<I160> };
-+    key <FK05> { overlay1=<I235> };
-+    key <FK06> { overlay1=<I232> }; // XF86MonBrightnessDown
-+    key <FK07> { overlay1=<I233> }; // XF86MonBrightnessUp
-+    key <FK08> { overlay1=<MUTE> };
-+    key <FK09> { overlay1=<VOL-> };
-+    key <FK10> { overlay1=<VOL+> };
-+
-+    key <AE01> { overlay1=<FK01> };
-+    key <AE02> { overlay1=<FK02> };
-+    key <AE03> { overlay1=<FK03> };
-+    key <AE04> { overlay1=<FK04> };
-+    key <AE05> { overlay1=<FK05> };
-+    key <AE06> { overlay1=<FK06> };
-+    key <AE07> { overlay1=<FK07> };
-+    key <AE08> { overlay1=<FK08> };
-+    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
-+    key <BKSP> { overlay1=<DELE> };
-+
-+    key <LALT> { overlay1=<CAPS> };
-+    key <RALT> { overlay1=<CAPS> };
-+};
---- /dev/null
-+++ b/symbols/chromebook_falco_ralt
-@@ -0,0 +1,39 @@
-+// This mapping assumes that inet(evdev) will also be sourced
-+partial
-+xkb_symbols "overlay" {
-+    key <RALT> { [ Overlay1_Enable ], overlay1=<RALT> };
-+
-+    key <AB09> { overlay1=<INS> };
-+
-+    key <LEFT> { overlay1=<HOME> };
-+    key <RGHT> { overlay1=<END> };
-+    key <UP>   { overlay1=<PGUP> };
-+    key <DOWN> { overlay1=<PGDN> };
-+
-+    key <FK01> { overlay1=<I166> };
-+    key <FK02> { overlay1=<I167> };
-+    key <FK03> { overlay1=<I181> };
-+    key <FK04> { overlay1=<I160> };
-+    key <FK05> { overlay1=<I235> };
-+    key <FK06> { overlay1=<I232> }; // XF86MonBrightnessDown
-+    key <FK07> { overlay1=<I233> }; // XF86MonBrightnessUp
-+    key <FK08> { overlay1=<MUTE> };
-+    key <FK09> { overlay1=<VOL-> };
-+    key <FK10> { overlay1=<VOL+> };
-+
-+    key <AE01> { overlay1=<FK01> };
-+    key <AE02> { overlay1=<FK02> };
-+    key <AE03> { overlay1=<FK03> };
-+    key <AE04> { overlay1=<FK04> };
-+    key <AE05> { overlay1=<FK05> };
-+    key <AE06> { overlay1=<FK06> };
-+    key <AE07> { overlay1=<FK07> };
-+    key <AE08> { overlay1=<FK08> };
-+    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
-+    key <BKSP> { overlay1=<DELE> };
-+
-+    key <RTSH> { overlay1=<CAPS> };
-+};
---- /dev/null
 +++ b/keycodes/chromebook_m_falco
 @@ -0,0 +1,4 @@
 +default xkb_keycodes "media" {
@@ -579,65 +496,4 @@
 +        <MUTE> = 74;
 +        <VOL-> = 75;
 +        <VOL+> = 76;
-+};
---- /dev/null
-+++ b/symbols/chromebook_m_falco
-@@ -0,0 +1,27 @@
-+// This mapping assumes that inet(evdev) will also be sourced
-+partial
-+xkb_symbols "overlay" {
-+    key <I225> { [ Overlay1_Enable ], overlay1=<I225> };
-+
-+    key <AB09> { overlay1=<INS> };
-+
-+    key <LEFT> { overlay1=<HOME> };
-+    key <RGHT> { overlay1=<END> };
-+    key <UP>   { overlay1=<PGUP> };
-+    key <DOWN> { overlay1=<PGDN> };
-+
-+    key <AE01> { overlay1=<FK01> };
-+    key <AE02> { overlay1=<FK02> };
-+    key <AE03> { overlay1=<FK03> };
-+    key <AE04> { overlay1=<FK04> };
-+    key <AE05> { overlay1=<FK05> };
-+    key <AE06> { overlay1=<FK06> };
-+    key <AE07> { overlay1=<FK07> };
-+    key <AE08> { overlay1=<FK08> };
-+    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
-+
-+    key <BKSP> { overlay1=<DELE> };
-+};
---- /dev/null
-+++ b/symbols/chromebook_m_falco_ralt
-@@ -0,0 +1,28 @@
-+// This mapping assumes that inet(evdev) will also be sourced
-+partial
-+xkb_symbols "overlay" {
-+    key <RALT> { [ Overlay1_Enable ], overlay1=<RALT> };
-+
-+    key <AB09> { overlay1=<INS> };
-+
-+    key <LEFT> { overlay1=<HOME> };
-+    key <RGHT> { overlay1=<END> };
-+    key <UP>   { overlay1=<PGUP> };
-+    key <DOWN> { overlay1=<PGDN> };
-+
-+    key <AE01> { overlay1=<FK01> };
-+    key <AE02> { overlay1=<FK02> };
-+    key <AE03> { overlay1=<FK03> };
-+    key <AE04> { overlay1=<FK04> };
-+    key <AE05> { overlay1=<FK05> };
-+    key <AE06> { overlay1=<FK06> };
-+    key <AE07> { overlay1=<FK07> };
-+    key <AE08> { overlay1=<FK08> };
-+    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
-+    key <BKSP> { overlay1=<DELE> };
-+
-+    key <RTSH> { overlay1=<CAPS> };
 +};
