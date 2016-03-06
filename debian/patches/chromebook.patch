@@ -9,17 +9,84 @@
  iso9995 \
  japan ledcaps \
  lednum ledscroll level5 \
---- a/symbols/Makefile.am
-+++ b/symbols/Makefile.am
-@@ -34,6 +34,7 @@
- ua us uz vn \
- za \
- altwin capslock compose ctrl empty eurosign rupeesign group inet \
--keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo
-+keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo chromebook \
-+chromebook_m chromebook_m_ralt chromebook_ralt
- 
- EXTRA_DIST = $(symbols_DATA)
+--- /dev/null
++++ b/compat/chromebook
+@@ -0,0 +1,7 @@
++// Overlay1_Enable is a latch key for overlay1
++
++default partial xkb_compatibility "overlay"  {
++    interpret Overlay1_Enable+AnyOfOrNone(all) {
++        action= SetControls(controls=Overlay1);
++    };
++};
+--- a/keycodes/Makefile.am
++++ b/keycodes/Makefile.am
+@@ -6,6 +6,7 @@
+ aliases \
+ amiga \
+ ataritt \
++chromebook_m \
+ empty \
+ evdev \
+ fujitsu \
+--- /dev/null
++++ b/keycodes/chromebook_falco
+@@ -0,0 +1,21 @@
++default xkb_keycodes "fkeys" {
++	<FK01> = 166; //Back
++	<FK02> = 167; //Forward
++	<FK03> = 181; //Refresh
++	<FK05> = 235; //Video mode
++	<FK06> = 232; //Brightness down
++	<FK07> = 233; //Brightness up
++	<FK08> = 121; //Mute
++	<FK09> = 122; //Volume -
++	<FK10> = 123; //Volume +
++
++        <I166> = 67;   // #define KEY_BACK
++        <I167> = 68;   // #define KEY_FORWARD
++        <I181> = 69;   // #define KEY_REFRESH
++        <I235> = 71;   // #define KEY_SWITCHVIDEOMODE
++        <I232> = 72;   // #define KEY_BRIGHTNESSDOWN
++        <I233> = 73;   // #define KEY_BRIGHTNESSUP
++        <MUTE> = 74;
++        <VOL-> = 75;
++        <VOL+> = 76;
++};
+--- /dev/null
++++ b/keycodes/chromebook_m
+@@ -0,0 +1,24 @@
++default xkb_keycodes "media" {
++	<FK01> = 166; //Back
++	<FK02> = 167; //Forward
++	<FK03> = 181; //Refresh
++	<FK04> = 160; //Video next
++	<FK05> = 235; //Video mode
++	<FK06> = 232; //Brightness down
++	<FK07> = 233; //Brightness up
++	<FK08> = 121; //Mute
++	<FK09> = 122; //Volume -
++	<FK10> = 123; //Volume +
++
++        <I166> = 67;   // #define KEY_BACK
++        <I167> = 68;   // #define KEY_FORWARD
++        <I181> = 69;   // #define KEY_REFRESH
++        <I160> = 70;   // #define KEY_COFFEE
++        <I235> = 71;   // #define KEY_SWITCHVIDEOMODE
++        <I232> = 72;   // #define KEY_BRIGHTNESSDOWN
++        <I233> = 73;   // #define KEY_BRIGHTNESSUP
++        <MUTE> = 74;
++        <VOL-> = 75;
++        <VOL+> = 76;
++};
++
+--- /dev/null
++++ b/keycodes/chromebook_m_falco
+@@ -0,0 +1,4 @@
++default xkb_keycodes "media" {
++	<FK04> = 160; //Video next
++        <I160> = 70;  // #define KEY_COFFEE
++};
 --- a/rules/base.ml1_c.part
 +++ b/rules/base.ml1_c.part
 @@ -1 +1,10 @@
@@ -34,6 +101,28 @@
 +  chromebook_m_falco_ralt *       =       complete+chromebook
 +  chromebook_no_m         *       =       complete
 +  *		          *	  =    	  complete
+--- a/rules/base.ml_c.part
++++ b/rules/base.ml_c.part
+@@ -1,5 +1,14 @@
+-  pc98		nec_vndr/jp	=	pc98(basic)
+-  *		jp		=	complete+japan
+-  olpc          *               =       olpc
+-  olpcm         *               =       olpc
+-  *		*		=	complete
++  chromebook              *               =       complete+chromebook
++  chromebook_ralt         *               =       complete+chromebook
++  chromebook_m            *               =       complete+chromebook
++  chromebook_m_ralt       *               =       complete+chromebook
++  chromebook_falco        *               =       complete+chromebook
++  chromebook_falco_ralt   *               =       complete+chromebook
++  chromebook_m_falco      *               =       complete+chromebook
++  chromebook_m_falco_ralt *               =       complete+chromebook
++  chromebook_no_m         *               =       complete
++  pc98		          nec_vndr/jp     =       pc98(basic)
++  *		          jp	          =       complete+japan
++  olpc                    *               =       olpc
++  olpcm                   *               =       olpc
++  *		          *	          =       complete
 --- a/rules/base.xml.in
 +++ b/rules/base.xml.in
 @@ -4,6 +4,69 @@
@@ -106,12 +195,24 @@
          <name>pc101</name>
          <_description>Generic 101-key PC</_description>
          <vendor>Generic</vendor>
+--- a/rules/evdev.m_k.part
++++ b/rules/evdev.m_k.part
+@@ -2,4 +2,10 @@
+   applealu_jis	=	evdev+macintosh(jisevdev)
+   olpc          =       evdev+olpc(olpc)
+   olpcm         =       evdev+olpc(olpcm)
++  chromebook_m  =       evdev+chromebook_m(media)
++  chromebook_m_ralt  =  evdev+chromebook_m(media)
++  chromebook_falco_m  = evdev+chromebook_m_falco(media)
++  chromebook_falco  = evdev+chromebook_falco(fkeys)
++  chromebook_falco_ralt  = evdev+chromebook_falco(fkeys)
++  chromebook_no_m  =    evdev+chromebook_m(media)
+   *		=	evdev
 --- a/rules/evdev.m_s.part
 +++ b/rules/evdev.m_s.part
-@@ -1,3 +1,12 @@
--  $evdevkbds    =   +inet(evdev)+inet(%m)
--  applealu_jis  =   +inet(evdev)+macintosh_vndr/jp(alujiskeys)
--  *             =   +inet(evdev)
+@@ -1,4 +1,12 @@
+   $evdevkbds    =   +inet(evdev)+inet(%m)
+-  chromebook    =   +inet(evdev)+inet(chromebook)
 +  chromebook               =   +inet(evdev)+chromebook(overlay)
 +  chromebook_ralt          =   +inet(evdev)+chromebook_ralt(overlay)
 +  chromebook_m             =   +inet(evdev)+chromebook_m(overlay)
@@ -121,13 +222,12 @@
 +  chromebook_m_falco       =   +inet(evdev)+chromebook_m(overlay)
 +  chromebook_m_falco_ralt  =   +inet(evdev)+chromebook_m_ralt(overlay)
 +  chromebook_no_m          =   +inet(evdev)
-+  $evdevkbds               =   +inet(evdev)+inet(%m)
-+  applealu_jis             =   +inet(evdev)+macintosh_vndr/jp(alujiskeys)
-+  *                        =   +inet(evdev)
+   applealu_jis  =   +inet(evdev)+macintosh_vndr/jp(alujiskeys)
+   *             =   +inet(evdev)
 --- a/rules/evdev.xml.in
 +++ b/rules/evdev.xml.in
-@@ -1302,6 +1302,69 @@
-        <vendor>htc</vendor>
+@@ -1309,6 +1309,69 @@
+        <vendor>Megawin Technology</vendor>
       </configItem>
      </model>
 +    <model>
@@ -196,19 +296,17 @@
    </modelList>
    <layoutList>
      <layout>
---- a/rules/evdev.m_k.part
-+++ b/rules/evdev.m_k.part
-@@ -2,4 +2,10 @@
-   applealu_jis	=	evdev+macintosh(jisevdev)
-   olpc          =       evdev+olpc(olpc)
-   olpcm         =       evdev+olpc(olpcm)
-+  chromebook_m  =       evdev+chromebook_m(media)
-+  chromebook_m_ralt  =  evdev+chromebook_m(media)
-+  chromebook_falco_m  = evdev+chromebook_m_falco(media)
-+  chromebook_falco  = evdev+chromebook_falco(fkeys)
-+  chromebook_falco_ralt  = evdev+chromebook_falco(fkeys)
-+  chromebook_no_m  =    evdev+chromebook_m(media)
-   *		=	evdev
+--- a/symbols/Makefile.am
++++ b/symbols/Makefile.am
+@@ -34,6 +34,7 @@
+ ua us uz vn \
+ za \
+ altwin capslock compose ctrl empty eurosign rupeesign group inet \
+-keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo
++keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo chromebook \
++chromebook_m chromebook_m_ralt chromebook_ralt
+ 
+ EXTRA_DIST = $(symbols_DATA)
 --- /dev/null
 +++ b/symbols/chromebook
 @@ -0,0 +1,49 @@
@@ -260,16 +358,6 @@
 +
 +    // Map dummy key to no symbol
 +    key <I253> { [ NoSymbol ] };
-+};
---- /dev/null
-+++ b/compat/chromebook
-@@ -0,0 +1,7 @@
-+// Overlay1_Enable is a latch key for overlay1
-+
-+default partial xkb_compatibility "overlay"  {
-+    interpret Overlay1_Enable+AnyOfOrNone(all) {
-+        action= SetControls(controls=Overlay1);
-+    };
 +};
 --- /dev/null
 +++ b/symbols/chromebook_m
@@ -407,93 +495,55 @@
 +
 +    key <RTSH> { overlay1=<CAPS> };
 +};
---- /dev/null
-+++ b/keycodes/chromebook_m
-@@ -0,0 +1,24 @@
-+default xkb_keycodes "media" {
-+	<FK01> = 166; //Back
-+	<FK02> = 167; //Forward
-+	<FK03> = 181; //Refresh
-+	<FK04> = 160; //Video next
-+	<FK05> = 235; //Video mode
-+	<FK06> = 232; //Brightness down
-+	<FK07> = 233; //Brightness up
-+	<FK08> = 121; //Mute
-+	<FK09> = 122; //Volume -
-+	<FK10> = 123; //Volume +
-+
-+        <I166> = 67;   // #define KEY_BACK
-+        <I167> = 68;   // #define KEY_FORWARD
-+        <I181> = 69;   // #define KEY_REFRESH
-+        <I160> = 70;   // #define KEY_COFFEE
-+        <I235> = 71;   // #define KEY_SWITCHVIDEOMODE
-+        <I232> = 72;   // #define KEY_BRIGHTNESSDOWN
-+        <I233> = 73;   // #define KEY_BRIGHTNESSUP
-+        <MUTE> = 74;
-+        <VOL-> = 75;
-+        <VOL+> = 76;
-+};
-+
---- a/keycodes/Makefile.am
-+++ b/keycodes/Makefile.am
-@@ -6,6 +6,7 @@
- aliases \
- amiga \
- ataritt \
-+chromebook_m \
- empty \
- evdev \
- fujitsu \
---- a/rules/base.ml_c.part
-+++ b/rules/base.ml_c.part
-@@ -1,5 +1,14 @@
--  pc98		nec_vndr/jp	=	pc98(basic)
--  *		jp		=	complete+japan
--  olpc          *               =       olpc
--  olpcm         *               =       olpc
--  *		*		=	complete
-+  chromebook              *               =       complete+chromebook
-+  chromebook_ralt         *               =       complete+chromebook
-+  chromebook_m            *               =       complete+chromebook
-+  chromebook_m_ralt       *               =       complete+chromebook
-+  chromebook_falco        *               =       complete+chromebook
-+  chromebook_falco_ralt   *               =       complete+chromebook
-+  chromebook_m_falco      *               =       complete+chromebook
-+  chromebook_m_falco_ralt *               =       complete+chromebook
-+  chromebook_no_m         *               =       complete
-+  pc98		          nec_vndr/jp     =       pc98(basic)
-+  *		          jp	          =       complete+japan
-+  olpc                    *               =       olpc
-+  olpcm                   *               =       olpc
-+  *		          *	          =       complete
---- /dev/null
-+++ b/keycodes/chromebook_m_falco
-@@ -0,0 +1,4 @@
-+default xkb_keycodes "media" {
-+	<FK04> = 160; //Video next
-+        <I160> = 70;  // #define KEY_COFFEE
-+};
---- /dev/null
-+++ b/keycodes/chromebook_falco
-@@ -0,0 +1,21 @@
-+default xkb_keycodes "fkeys" {
-+	<FK01> = 166; //Back
-+	<FK02> = 167; //Forward
-+	<FK03> = 181; //Refresh
-+	<FK05> = 235; //Video mode
-+	<FK06> = 232; //Brightness down
-+	<FK07> = 233; //Brightness up
-+	<FK08> = 121; //Mute
-+	<FK09> = 122; //Volume -
-+	<FK10> = 123; //Volume +
-+
-+        <I166> = 67;   // #define KEY_BACK
-+        <I167> = 68;   // #define KEY_FORWARD
-+        <I181> = 69;   // #define KEY_REFRESH
-+        <I235> = 71;   // #define KEY_SWITCHVIDEOMODE
-+        <I232> = 72;   // #define KEY_BRIGHTNESSDOWN
-+        <I233> = 73;   // #define KEY_BRIGHTNESSUP
-+        <MUTE> = 74;
-+        <VOL-> = 75;
-+        <VOL+> = 76;
-+};
+--- a/rules/base.m_s.part
++++ b/rules/base.m_s.part
+@@ -8,7 +8,6 @@
+   btc5126t      =       +inet(nav_acpi_common)
+   btc9116u      =       +inet(btc9019u)
+   btc6301urf    =       +inet(media_nav_acpi_common)
+-  chromebook    =       +inet(chromebook)
+   dellsk8125    =       +inet(dell)
+   dellsk8135    =       +inet(dell)
+   cherrybunlim  =       +inet(nav_common)
+--- a/symbols/inet
++++ b/symbols/inet
+@@ -1877,27 +1877,6 @@
+ };
+ 
+ partial alphanumeric_keys
+-xkb_symbols "chromebook" {
+-	include "level3(ralt_switch)"
+-        key <FK01> {    [ XF86Back ] };
+-        key <FK02> {    [ XF86Forward ] };
+-        key <FK03> {    [ XF86Reload ] };
+-        key <FK04> {    [ F11 ] };
+-//        key <FK05> {    [ F5, F5, F5, F5 ] }; // Overview key
+-        key <FK06> {    [ XF86MonBrightnessDown ] };
+-        key <FK07> {    [ XF86MonBrightnessUp ] };
+-        key <FK08> {    [ XF86AudioMute ] };
+-        key <FK09> {    [ XF86AudioLowerVolume ] };
+-        key <FK10> {    [ XF86AudioRaiseVolume ] };
+-        key <BKSP> {    [ BackSpace, BackSpace, Delete ] };
+-        key <UP>   {    [ Up, Up, Prior, Up ] };
+-        key <DOWN> {    [ Down, Down, Next, Down ] };
+-        key <LEFT> {    [ Left, Left, Home, Left ] };
+-        key <RGHT> {    [ Right, Right, End, Right ] };
+-        key <LWIN> {    [ Super_L, Super_L, Caps_Lock, Super_L ] };
+-};
+-
+-partial alphanumeric_keys
+ xkb_symbols "teck227" {
+     include "inet(media_nav_common)"
+     key <HIRA> { [ Hiragana ] };
+--- a/symbols/Makefile.in
++++ b/symbols/Makefile.in
+@@ -396,7 +396,8 @@
+ ua us uz vn \
+ za \
+ altwin capslock compose ctrl empty eurosign rupeesign group inet \
+-keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo
++keypad kpdl level3 level5 nbsp olpc shift srvr_ctrl typo chromebook \
++chromebook_m chromebook_m_ralt chromebook_ralt
+ 
+ EXTRA_DIST = $(symbols_DATA)
+ all: all-recursive
