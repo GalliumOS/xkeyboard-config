@@ -1,39 +1,40 @@
-xkeyboard-config (2.12-1ubuntu1-galliumos8) vivid; urgency=medium
+xkeyboard-config (2.16-1ubuntu1-galliumos1) xenial; urgency=medium
 
-  * Removed falco symbol files and added I225 to the chromebook search overlay symbol files
+  * Added chromebook patch
 
- -- Hugh Greenberg <hugh@galliumos.org>  Fri, 26 Feb 2016 19:19:04 +0400
+ -- Hugh Greenberg <hugh@galliumos.org>  Sat, 05 Mar 2016 10:32:50 +0200
 
-xkeyboard-config (2.12-1ubuntu1-galliumos7) vivid; urgency=medium
+xkeyboard-config (2.16-1ubuntu1) xenial; urgency=medium
 
-  * Added more keyboard maps for falco/pixel/pixel2 to match the other chromebook maps
+  * Merge with Debian (LP: #1536385, #575978), remaining changes:
+    - control, rules, xkb-data-i18n.install, xkb-data.install: Split out
+      xkb-data-i18n to be used by console-setup.
+    - xkb-data.postinst.in: Remove the xkb cache to make sure it gets
+      regenerated.
+  * Drop 105_intelligent_keyboard.patch, never made upstream and seems to
+    be redundant by now anyway.
 
- -- Hugh Greenberg <hugh@galliumos.org>  Thu, 25 Feb 2016 19:19:04 +0400
+ -- Timo Aaltonen <tjaalton@debian.org>  Fri, 22 Jan 2016 10:32:50 +0200
 
-xkeyboard-config (2.12-1ubuntu1-galliumos6) vivid; urgency=medium
+xkeyboard-config (2.16-1) unstable; urgency=medium
 
-  * Added keyboard maps for falco/pixel/pixel2 from @Paviluf
+  * Team upload.
+  * New upstream release.
+  * Bump debhelper compat to 9, Standards-Version to 3.9.6, and update Vcs-*
+    control fields.
+  * Drop dh_builddeb override, xz is the default since dpkg 1.17.0.
 
- -- Hugh Greenberg <hugh@galliumos.org>  Sat, 20 Feb 2016 19:19:04 +0400
+ -- Julien Cristau <jcristau@debian.org>  Wed, 28 Oct 2015 15:39:42 +0000
 
-xkeyboard-config (2.12-1ubuntu1-galliumos5) vivid; urgency=medium
+xkeyboard-config (2.14-1) unstable; urgency=medium
 
-  * Added keyboard backlight controls
+  * New upstream release (closes: #776817).
+    - fujitsu_vndr: add a name to xkb_symbols sections (closes: #749006)
+    - Add option to swap right alt & right control (closes: #752680)
+  * Remove Cyril from Uploaders.
+  * Drop fr-oss-rctrl.diff, upstream did a mostly equivalent change.
 
- -- Hugh Greenberg <hugh@galliumos.org>  Mon, 19 Jan 2016 19:19:04 +0400
-
-xkeyboard-config (2.12-1ubuntu1-galliumos2) vivid; urgency=medium
-
-  * Additional chromebook keymaps and symbols
-  * Added chromebook support from: http://pastebin.com/PrPYW6SA
-
- -- Hugh Greenberg <hugh@galliumos.org>  Sat, 16 Jan 2016 19:19:04 +0400
-
-xkeyboard-config (2.12-1ubuntu1-galliumos1) utopic; urgency=medium
-
-  * Set package version to match provenance
- 
- -- reynhout <reynhout@galliumos.org>  Sun, 10 Jan 2016 21:05:33 +0000
+ -- Julien Cristau <jcristau@debian.org>  Sun, 26 Apr 2015 16:30:30 +0200
 
 xkeyboard-config (2.12-1ubuntu1) utopic; urgency=medium
 

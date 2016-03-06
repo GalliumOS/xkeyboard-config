@@ -21,7 +21,6 @@ override_dh_auto_configure:
 
 override_dh_auto_build:
 	dh_auto_build
-	mv $(CURDIR)/po/xkeyboard-config.pot $(CURDIR)/po/xkeyboard-config.pot-orig
 	cd $(CURDIR)/po && intltool-update -p
 
 override_dh_auto_install:
@@ -45,9 +44,6 @@ override_dh_auto_install:
 override_dh_quilt_unpatch:
 	dh_quilt_unpatch
 	touch rules/base.o_k.part
-
-override_dh_builddeb:
-	dh_builddeb -- -Zxz
 
 %:
 	dh $@ --with quilt,autoreconf --builddirectory=build/
