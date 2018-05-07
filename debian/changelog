@@ -1,3 +1,97 @@
+xkeyboard-config (2.23.1-1ubuntu1) bismuth; urgency=medium
+
+  * Prepare for GalliumOS 3.0
+    - patches from 2.16-1ubuntu1-galliumos1
+
+ -- reynhout <reynhout@galliumos.org>  Mon, 07 May 2018 04:49:53 +0000
+
+xkeyboard-config (2.23.1-1ubuntu1) bionic; urgency=medium
+
+  * Merge with Debian (LP: #1659183, LP: #1685774, LP: #1689110,
+    LP: #1746544), remaining changes:
+    - control, rules, xkb-data-i18n.install, xkb-data.install: Split out
+      xkb-data-i18n to be used by console-setup.
+    - xkb-data.postinst: Remove the xkb cache to make sure it gets
+      regenerated.
+  * Dropped patch, applied upstream:
+    - d/p/elfdalian-kb-layout.diff
+
+ -- Gunnar Hjalmarsson <gunnarhj@ubuntu.com>  Fri, 02 Feb 2018 12:47:00 +0100
+
+xkeyboard-config (2.23.1-1) unstable; urgency=medium
+
+  * New upstream release. (Closes: #884822)
+  * revert-indic-blacklist.diff: Dropped, upstream.
+  * fix-typo.diff: Fix a typo in pl layout.
+
+ -- Timo Aaltonen <tjaalton@debian.org>  Thu, 01 Feb 2018 17:30:40 +0200
+
+xkeyboard-config (2.19-1.1ubuntu1) artful; urgency=medium
+
+  * Merge with Debian (LP: #1707929), remaining changes:
+    - control, rules, xkb-data-i18n.install, xkb-data.install: Split out
+      xkb-data-i18n to be used by console-setup.
+    - xkb-data.postinst: Remove the xkb cache to make sure it gets
+      regenerated.
+    - debian/patches/elfdalian-kb-layout.diff
+
+ -- Gunnar Hjalmarsson <gunnarhj@ubuntu.com>  Mon, 02 Oct 2017 21:46:00 +0200
+
+xkeyboard-config (2.19-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Revert blacklisting of Indic layouts (Closes: #865316)
+
+ -- Pirate Praveen <praveen@debian.org>  Tue, 18 Jul 2017 13:08:55 +0530
+
+xkeyboard-config (2.19-1ubuntu1) zesty; urgency=medium
+
+  * Merge with Debian, remaining changes:
+    - control, rules, xkb-data-i18n.install, xkb-data.install: Split out
+      xkb-data-i18n to be used by console-setup.
+    - xkb-data.postinst: Remove the xkb cache to make sure it gets
+      regenerated.
+  * debian/patches/elfdalian-kb-layout.diff:
+    - Addition of an Elfdalian keyboard layout (LP: #1655782).
+
+ -- Gunnar Hjalmarsson <gunnarhj@ubuntu.com>  Wed, 15 Feb 2017 19:58:00 +0100
+
+xkeyboard-config (2.19-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Standards-Version to 3.9.8.
+
+ -- Andreas Boll <andreas.boll.dev@gmail.com>  Thu, 12 Jan 2017 11:40:48 +0100
+
+xkeyboard-config (2.18-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Timo Aaltonen ]
+  * New upstream release.
+
+  [ Julien Cristau ]
+  * Update upstream URLs in packaging to use https.
+
+ -- Julien Cristau <jcristau@debian.org>  Sat, 24 Sep 2016 15:07:03 +0200
+
+xkeyboard-config (2.17-1ubuntu1) yakkety; urgency=medium
+
+  * Merge with Debian (LP: #1584314), remaining changes:
+    - control, rules, xkb-data-i18n.install, xkb-data.install: Split out
+      xkb-data-i18n to be used by console-setup.
+    - xkb-data.postinst.in: Remove the xkb cache to make sure it gets
+      regenerated.
+
+ -- Gunnar Hjalmarsson <gunnarhj@ubuntu.com>  Mon, 23 May 2016 20:04:00 +0200
+
+xkeyboard-config (2.17-1) unstable; urgency=medium
+
+  * New upstream release
+  * Use https instead of git for Vcs-Git.
+
+ -- Julien Cristau <jcristau@debian.org>  Sun, 21 Feb 2016 15:56:50 +0000
+
 xkeyboard-config (2.16-1ubuntu1-galliumos1) xenial; urgency=medium
 
   * Added chromebook patch
