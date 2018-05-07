@@ -1,2 +1,0 @@
-# xkeyboard-config
-xkeyboard-config
