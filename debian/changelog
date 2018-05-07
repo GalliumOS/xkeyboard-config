@@ -1,4 +1,4 @@
-xkeyboard-config (2.23.1-1ubuntu1) bismuth; urgency=medium
+xkeyboard-config (2.23.1-1ubuntu1-galliumos0) bismuth; urgency=medium
 
   * Prepare for GalliumOS 3.0
     - patches from 2.16-1ubuntu1-galliumos1
