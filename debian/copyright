@@ -2,7 +2,7 @@ This package was debianized by Denis Barbier <barbier@debian.org> on
 Tue, 10 Oct 2006 01:16:55 +0200
 
 It was downloaded from
-  http://xlibs.freedesktop.org/xkbdesc/xkeyboard-config-0.9.tar.gz
+  https://xorg.freedesktop.orgreleases/individual/data/xkeyboard-config
 
 Upstream Maintainer: 
   Sergey V. Udaltsov <svu@gnome.org>
