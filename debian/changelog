@@ -1,3 +1,4 @@
+
 xkeyboard-config (2.23.1-1ubuntu1-galliumos1) bismuth; urgency=medium
 
   * Fixed volume rocker for convertible models when using a "F keys mapped to 
