@@ -1,8 +1,12 @@
 xkeyboard-config (2.23.1-1ubuntu1-galliumos1) bismuth; urgency=medium
 
-  * Fixed volume rocker for convertible models when using an "F keys mapped to media keys" layout
+  * Fixed volume rocker for convertible models when using a "F keys mapped to 
+    media keys" layout
+  * Moved keyboard backlight keys to Overlay+[, Overlay+], and Overlay+\
+  * Added F10, F11, and F12 bindings to Overlay+0, Overlay+- and Overlay+= 
+    respectively
 
- -- coltondrg? <coltondrg@galliumos.org>  Fri, 21 Jun 2019 09:07:45 +0000
+ -- coltondrg? <coltondrg@galliumos.org>  Fri, 21 Jun 2019 19:30:00 +0000
 
 xkeyboard-config (2.23.1-1ubuntu1-galliumos0) bismuth; urgency=medium
 
