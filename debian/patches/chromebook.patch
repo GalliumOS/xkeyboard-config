@@ -55,19 +55,18 @@
 +};
 --- /dev/null
 +++ b/keycodes/chromebook_m
-@@ -0,0 +1,28 @@
+@@ -0,0 +1,24 @@
 +default xkb_keycodes "media" {
-+ # These lines remap media keys to F keys, why?
-+ #	<FK01> = 166; //Back
-+ #	<FK02> = 167; //Forward
-+ #	<FK03> = 181; //Refresh
-+ #	<FK04> = 160; //Video next
-+ #	<FK05> = 235; //Video mode
-+ #	<FK06> = 232; //Brightness down
-+ #	<FK07> = 233; //Brightness up
-+ #	<FK08> = 121; //Mute
-+ #	<FK09> = 122; //Volume -
-+ #	<FK10> = 123; //Volume +
++	<FK01> = 166; //Back
++	<FK02> = 167; //Forward
++	<FK03> = 181; //Refresh
++	<FK04> = 160; //Video next
++	<FK05> = 235; //Video mode
++	<FK06> = 232; //Brightness down
++	<FK07> = 233; //Brightness up
++	<FK08> = 121; //Mute
++	<FK09> = 122; //Volume -
++	<FK10> = 123; //Volume +
 +
 +        <I166> = 67;   // #define KEY_BACK
 +        <I167> = 68;   // #define KEY_FORWARD
@@ -79,11 +78,8 @@
 +        <MUTE> = 74;
 +        <VOL-> = 75;
 +        <VOL+> = 76;
-+        # Volume rocker for convertible models
-+        <VLR-> = 122;
-+        <VLR+> = 123;
-+
 +};
++
 --- /dev/null
 +++ b/keycodes/chromebook_m_falco
 @@ -0,0 +1,4 @@
@@ -365,7 +361,7 @@
 +};
 --- /dev/null
 +++ b/symbols/chromebook_m
-@@ -0,0 +1,53 @@
+@@ -0,0 +1,49 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
@@ -389,10 +385,6 @@
 +    key <MUTE> { overlay1=<FK08> };
 +    key <VOL-> { overlay1=<FK09> };
 +    key <VOL+> { overlay1=<FK10> };
-+
-+    # Volume rocker for convertibles
-+    key <VLR-> { [ XF86AudioLowerVolume ] };
-+    key <VLR+> { [ XF86AudioRaiseVolume ] };
 +
 +    key <AE01> { overlay1=<FK01> };
 +    key <AE02> { overlay1=<FK02> };
@@ -421,7 +413,7 @@
 +};
 --- /dev/null
 +++ b/symbols/chromebook_m_ralt
-@@ -0,0 +1,43 @@
+@@ -0,0 +1,39 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
@@ -444,10 +436,6 @@
 +    key <MUTE> { overlay1=<FK08> };
 +    key <VOL-> { overlay1=<FK09> };
 +    key <VOL+> { overlay1=<FK10> };
-+
-+    # Volume rocker for convertibles
-+    key <VLR-> { [ XF86AudioLowerVolume ] };
-+    key <VLR+> { [ XF86AudioRaiseVolume ] };
 +
 +    key <AE01> { overlay1=<FK01> };
 +    key <AE02> { overlay1=<FK02> };
