@@ -55,31 +55,34 @@
 +};
 --- /dev/null
 +++ b/keycodes/chromebook_m
-@@ -0,0 +1,24 @@
+@@ -0,0 +1,27 @@
 +default xkb_keycodes "media" {
-+	<FK01> = 166; //Back
-+	<FK02> = 167; //Forward
-+	<FK03> = 181; //Refresh
-+	<FK04> = 160; //Video next
-+	<FK05> = 235; //Video mode
-+	<FK06> = 232; //Brightness down
-+	<FK07> = 233; //Brightness up
-+	<FK08> = 121; //Mute
-+	<FK09> = 122; //Volume -
-+	<FK10> = 123; //Volume +
++	<FK01> = 166; // Back            > F1
++	<FK02> = 167; // Forward         > F2
++	<FK03> = 181; // Refresh         > F3
++	<FK04> = 160; // Video next      > F4
++	<FK05> = 235; // Video mode      > F5
++	<FK06> = 232; // Brightness Down > F6
++	<FK07> = 233; // Brightness Up   > F7
++	<FK08> = 250; // 250             > F8
++	<FK09> = 251; // 251             > F9
++	<FK10> = 252; // 252             > F10
 +
-+        <I166> = 67;   // #define KEY_BACK
-+        <I167> = 68;   // #define KEY_FORWARD
-+        <I181> = 69;   // #define KEY_REFRESH
-+        <I160> = 70;   // #define KEY_COFFEE
-+        <I235> = 71;   // #define KEY_SWITCHVIDEOMODE
-+        <I232> = 72;   // #define KEY_BRIGHTNESSDOWN
-+        <I233> = 73;   // #define KEY_BRIGHTNESSUP
-+        <MUTE> = 74;
-+        <VOL-> = 75;
-+        <VOL+> = 76;
++        <I166> = 67;   // F1  > Back
++        <I167> = 68;   // F2  > Forward
++        <I181> = 69;   // F3  > Reload
++        <I160> = 70;   // F4  > Video next? [Fullscreen]
++        <I235> = 71;   // F5  > Video mode [Display Settings]
++        <I232> = 72;   // F6  > Brightness Down
++        <I233> = 73;   // F7  > Brightness Up
++        <MUTE> = 74;   // F8  > Mute
++        <VOL-> = 75;   // F9  > Volume Down
++        <VOL+> = 76;   // F10 > Volume Up
++        # Volume rocker for convertible models
++        <VLR-> = 122;
++        <VLR+> = 123;
++
 +};
-+
 --- /dev/null
 +++ b/keycodes/chromebook_m_falco
 @@ -0,0 +1,4 @@
@@ -309,7 +312,7 @@
  EXTRA_DIST = $(symbols_DATA)
 --- /dev/null
 +++ b/symbols/chromebook
-@@ -0,0 +1,49 @@
+@@ -0,0 +1,52 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
@@ -343,9 +346,12 @@
 +    key <AE07> { overlay1=<FK07> };
 +    key <AE08> { overlay1=<FK08> };
 +    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
++    key <AE10> { overlay1=<FK10> };
++    key <AE11> { overlay1=<FK11> };
++    key <AE12> { overlay1=<FK12> };
++    key <BKSL> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
++    key <AD11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
++    key <AD12> { overlay1=<I238> }; // KEY_KBDILLUMUP
 +    key <BKSP> { overlay1=<DELE> };
 +
 +    key <LALT> { overlay1=<CAPS> };
@@ -361,7 +367,7 @@
 +};
 --- /dev/null
 +++ b/symbols/chromebook_m
-@@ -0,0 +1,49 @@
+@@ -0,0 +1,56 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
@@ -386,6 +392,10 @@
 +    key <VOL-> { overlay1=<FK09> };
 +    key <VOL+> { overlay1=<FK10> };
 +
++    # Volume rocker for convertibles
++    key <VLR-> { [ XF86AudioLowerVolume ] };
++    key <VLR+> { [ XF86AudioRaiseVolume ] };
++
 +    key <AE01> { overlay1=<FK01> };
 +    key <AE02> { overlay1=<FK02> };
 +    key <AE03> { overlay1=<FK03> };
@@ -395,9 +405,12 @@
 +    key <AE07> { overlay1=<FK07> };
 +    key <AE08> { overlay1=<FK08> };
 +    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
++    key <AE10> { overlay1=<FK10> };
++    key <AE11> { overlay1=<FK11> };
++    key <AE12> { overlay1=<FK12> };
++    key <BKSL> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
++    key <AD11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
++    key <AD12> { overlay1=<I238> }; // KEY_KBDILLUMUP
 +    key <BKSP> { overlay1=<DELE> };
 +
 +    key <LALT> { overlay1=<CAPS> };
@@ -413,7 +426,7 @@
 +};
 --- /dev/null
 +++ b/symbols/chromebook_m_ralt
-@@ -0,0 +1,39 @@
+@@ -0,0 +1,46 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
@@ -437,6 +450,10 @@
 +    key <VOL-> { overlay1=<FK09> };
 +    key <VOL+> { overlay1=<FK10> };
 +
++    # Volume rocker for convertibles
++    key <VLR-> { [ XF86AudioLowerVolume ] };
++    key <VLR+> { [ XF86AudioRaiseVolume ] };
++
 +    key <AE01> { overlay1=<FK01> };
 +    key <AE02> { overlay1=<FK02> };
 +    key <AE03> { overlay1=<FK03> };
@@ -446,16 +463,19 @@
 +    key <AE07> { overlay1=<FK07> };
 +    key <AE08> { overlay1=<FK08> };
 +    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
++    key <AE10> { overlay1=<FK10> };
++    key <AE11> { overlay1=<FK11> };
++    key <AE12> { overlay1=<FK12> };
++    key <BKSL> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
++    key <AD11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
++    key <AD12> { overlay1=<I238> }; // KEY_KBDILLUMUP
 +    key <BKSP> { overlay1=<DELE> };
 +
 +    key <RTSH> { overlay1=<CAPS> };
 +};
 --- /dev/null
 +++ b/symbols/chromebook_ralt
-@@ -0,0 +1,39 @@
+@@ -0,0 +1,42 @@
 +// This mapping assumes that inet(evdev) will also be sourced
 +partial
 +xkb_symbols "overlay" {
@@ -488,9 +508,12 @@
 +    key <AE07> { overlay1=<FK07> };
 +    key <AE08> { overlay1=<FK08> };
 +    key <AE09> { overlay1=<FK09> };
-+    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
++    key <AE10> { overlay1=<FK10> };
++    key <AE11> { overlay1=<FK11> };
++    key <AE12> { overlay1=<FK12> };
++    key <BKSL> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
++    key <AD11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
++    key <AD12> { overlay1=<I238> }; // KEY_KBDILLUMUP
 +    key <BKSP> { overlay1=<DELE> };
 +
 +    key <RTSH> { overlay1=<CAPS> };
